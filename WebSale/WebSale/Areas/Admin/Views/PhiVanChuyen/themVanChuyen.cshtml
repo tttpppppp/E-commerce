@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Thêm phí vận chuyển";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container">
+    <h4 class="mb-4">Thêm phí vận chuyển</h4>
+    <div class="mb-3">
+        <label for="tinh" class="form-label">Chọn tỉnh thành</label>
+        <select class="form-control" id="tinh" aria-label="Chọn tỉnh thành">
+            <option value="" disabled selected>Chọn tỉnh thành</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="quan" class="form-label">Chọn quận huyện</label>
+        <select class="form-control" id="quan" aria-label="Chọn quận huyện">
+            <option value="" disabled selected>Chọn quận huyện</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="xa" class="form-label">Chọn xã</label>
+        <select class="form-control" id="phuong" aria-label="Chọn xã">
+            <option value="" disabled selected>Chọn xã</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Nhập giá</label>
+        <input type="number" id="price" placeholder="Nhập giá" class="form-control price-vanchuyen" aria-label="Nhập giá" />
+    </div>
+    <button type="button" class="btn btn-primary btn-vanchuyen">Thêm phí vận chuyển</button>
+    <a href="/Admin/PhiVanChuyen/" class="btn btn-success">Danh sách phí vẫn chuyển</a>
+</div>

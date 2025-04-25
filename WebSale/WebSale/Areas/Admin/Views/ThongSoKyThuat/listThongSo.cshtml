@@ -1,0 +1,126 @@
+﻿@model List<WebSale.Models.ThongSoKyThuat>
+
+@{
+    ViewBag.Title = "Danh sách thông số kỹ thuật";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="p-2">
+    <a href="/Admin/ThongSoKyThuat/addThongSo" class="btn btn-success mb-3">
+        <i class="fas fa-plus"></i> Thêm thông số kỹ thuật
+    </a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông số kỹ thuật</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-2 col-md-2 mb-4">
+                            <!-- Cột cho nhãn -->
+                            <dl class="row mb-2">
+                                <!-- Thêm margin-bottom để tạo khoảng cách giữa các dòng -->
+                                <dt class="col-sm-12">Công nghệ màn hình:</dt>
+                                <dt class="col-sm-12">Độ phân giải:</dt>
+                                <dt class="col-sm-12">Màn hình rộng:</dt>
+                                <dt class="col-sm-12">Tính năng màn hình:</dt>
+                                <dt class="col-sm-12">Tần số quét:</dt>
+                                <dt class="col-sm-12">Camera sau:</dt>
+                                <dt class="col-sm-12">Độ phân giải camera sau:</dt>
+                                <dt class="col-sm-12">Quay phim:</dt>
+                                <dt class="col-sm-12">Đèn flash:</dt>
+                                <dt class="col-sm-12">Tính năng camera sau:</dt>
+                                <dt class="col-sm-12">Camera trước:</dt>
+                                <dt class="col-sm-12">Độ phân giải camera trước:</dt>
+                                <dt class="col-sm-12">Hệ điều hành:</dt>
+                                <dt class="col-sm-12">CPU:</dt>
+                                <dt class="col-sm-12">RAM:</dt>
+                                <dt class="col-sm-12">Bộ nhớ trong:</dt>
+                                <dt class="col-sm-12">Mạng di động:</dt>
+                                <dt class="col-sm-12">SIM:</dt>
+                                <dt class="col-sm-12">Wi-Fi:</dt>
+                                <dt class="col-sm-12">GPS:</dt>
+                                <dt class="col-sm-12">Bluetooth:</dt>
+                                <dt class="col-sm-12">Cổng sạc:</dt>
+                                <dt class="col-sm-12">Jack tai nghe:</dt>
+                                <dt class="col-sm-12">Kết nối khác:</dt>
+                                <dt class="col-sm-12">Dung lượng pin:</dt>
+                                <dt class="col-sm-12">Công nghệ pin:</dt>
+                                <dt class="col-sm-12">Bảo mật nâng cao:</dt>
+                                <dt class="col-sm-12">Tính năng đặc biệt:</dt>
+                                <dt class="col-sm-12">Kháng nước, bụi:</dt>
+                                <dt class="col-sm-12">Ghi âm:</dt>
+                                <dt class="col-sm-12">Radio:</dt>
+                                <dt class="col-sm-12">Định dạng xem phim:</dt>
+                                <dt class="col-sm-12">Định dạng nghe nhạc:</dt>
+                            </dl>
+                        </div>
+                        <div class="col-lg-6 col-md-6 mb-4">
+                            <!-- Cột cho nội dung -->
+                            <dl class="row mb-2">
+                                <!-- Thêm margin-bottom để tạo khoảng cách giữa các dòng -->
+                                <dd class="col-sm-12">@item.screenTechnology</dd>
+                                <dd class="col-sm-12">@item.screenResolution</dd>
+                                <dd class="col-sm-12">@item.screenSize</dd>
+                                <dd class="col-sm-12">@item.screenFeatures</dd>
+                                <dd class="col-sm-12">@item.refreshRate</dd>
+                                <dd class="col-sm-12">@item.rearCamera</dd>
+                                <dd class="col-sm-12">@item.rearCameraResolution</dd>
+                                <dd class="col-sm-12">@item.videoRecording</dd>
+                                <dd class="col-sm-12">@item.flash</dd>
+                                <dd class="col-sm-12">@item.rearCameraFeatures</dd>
+                                <dd class="col-sm-12">@item.frontCamera</dd>
+                                <dd class="col-sm-12">@item.frontCameraResolution</dd>
+                                <dd class="col-sm-12">@item.operatingSystem</dd>
+                                <dd class="col-sm-12">@item.cpu</dd>
+                                <dd class="col-sm-12">@item.ram</dd>
+                                <dd class="col-sm-12">@item.internalStorage</dd>
+                                <dd class="col-sm-12">@item.mobileNetwork</dd>
+                                <dd class="col-sm-12">@item.sim</dd>
+                                <dd class="col-sm-12">@item.wifi</dd>
+                                <dd class="col-sm-12">@item.gps</dd>
+                                <dd class="col-sm-12">@item.bluetooth</dd>
+                                <dd class="col-sm-12">@item.chargingPort</dd>
+                                <dd class="col-sm-12">@item.headphoneJack</dd>
+                                <dd class="col-sm-12">@item.otherConnections</dd>
+                                <dd class="col-sm-12">@item.batteryCapacity</dd>
+                                <dd class="col-sm-12">@item.batteryTechnology</dd>
+                                <dd class="col-sm-12">@item.advancedSecurity</dd>
+                                <dd class="col-sm-12">@item.specialFeatures</dd>
+                                <dd class="col-sm-12">@item.waterResistance</dd>
+                                <dd class="col-sm-12">@item.recording</dd>
+                                <dd class="col-sm-12">@item.radio</dd>
+                                <dd class="col-sm-12">@item.movieFormats</dd>
+                                <dd class="col-sm-12">@item.musicFormats</dd>
+                            </dl>
+                        </div>
+                        <div class="col-lg-2 col-md-1 mb-4 text-center">
+                            <div class="text-center mt-1">
+                                <span class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">
+                                    @(item.status == 1 ? "Active" : "UnActive")
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2 col-md-2 mb-4 text-center">
+                            <!-- Cột Edit -->
+                            <a href="/Admin/ThongSoKyThuat/updateThongSo?id=@item.specificationId" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="/Admin/ThongSoKyThuat/deleteThongSo?id=@item.specificationId" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning">Dữ liệu đang cập nhật!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

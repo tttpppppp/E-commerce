@@ -1,0 +1,86 @@
+﻿@model  List<WebSale.Models.OrderViewModel>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4">
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <h6 class="font-weight-bold mx-3">Danh sách đơn hàng</h6>
+            <a href="/Admin/Order/ExportToExcel" class="btn btn-success">Xuất file Excel</a>
+        </div>
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="orderData" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Mã đơn hàng</th>
+                            <th>Ngày đặt hàng</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Tên người đặt</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Địa chỉ</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Thành phố</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Quận</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Phường,xã</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Số điện thoại</th>
+                            <th>Email</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Tổng giá trị đơn hàng</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Giá vận chuyển</th>
+                            <th class="font-weight-bold text-nowrap" style="width: 5%;">Tổng cộng</th>
+                            <th>Trạng thái</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OrderId</td>
+                                <td>@item.CreatedAt</td>
+                                <td>@item.FullName</td>
+                                <td>@item.Address</td>
+                                <td>@item.city</td>
+                                <td>@item.didistrict</td>
+                                <td>@item.ward</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.ShippingEmail</td>
+                                <td><span class="text-danger font-weight-bold">@item.TotalPrice.ToString("#,0")đ</span></td>
+                                <td><span class="text-danger font-weight-bold">@item.giaVanChuyen.ToString("#,0")đ</span></td>
+                                <td><span class="text-danger font-weight-bold">@((item.giaVanChuyen+ item.TotalPrice).ToString("#,0đ"))</span></td>
+                                <td class="font-weight-bold text-primary text-nowrap" style="width: 5%;">
+                                    @if (item.TrangThai == 0)
+                                    {
+                                        <button class="font-weight-bold btn btn-danger text-white btn-ChangeStatus" data-order="@item.OrderId">
+                                            Chưa xử lý
+                                        </button>
+                                    }
+                                    else if (item.TrangThai == 1)
+                                    {
+                                        <button class="font-weight-bold btn btn-primary text-white btn-ChangeStatus" data-order="@item.OrderId">
+                                            Đang giao
+                                        </button>
+                                    }
+                                    else if (item.TrangThai == 2)
+                                    {
+                                        <button class="font-weight-bold btn btn-success text-white btn-ChangeStatus" data-order="@item.OrderId">
+                                            Đã giao hàng
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="font-weight-bold btn btn-danger text-white btn-ChangeStatus" data-order="@item.OrderId">
+                                           Đơn bị hủy
+                                        </button>
+                                    }
+                                </td>
+                                <td class="font-weight-bold text-primary text-nowrap" style="width: 5%;"><a href="/Admin/ChiTietDonHang/Index/?orderId=@item.OrderId" class="btn btn-primary">Chi tiết</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

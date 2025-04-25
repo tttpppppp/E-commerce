@@ -1,0 +1,175 @@
+﻿@model WebSale.Models.User
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="login-nav-top mt-5 mt-lg-0">
+    <div class="container">
+        <ul class="mt-3 mt-lg-0">
+            <li>
+                <a href="<?= base_url('/'); ?>">Trang chủ</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="<?= base_url('index.php/account'); ?>">Tài khoản</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-12 col-lg-8 mb-5">
+            <div class="row">
+                <div class="col-6">
+                    <a href="/lichsudonhang" class="text-decoration-none text-color">
+                        <div class="history d-flex flex-column align-items-center justify-content-center p-3 bg-white p-2 w-100 rounded-3 gap-2">
+                            <div class="position-relative">
+                                <img src="https://theme.hstatic.net/200000823693/1001172883/14/checklist.png?v=978" alt="" width="23px">
+                                <span class="countOrders">@(ViewBag.listorder?.Count ?? 0)</span>
+                            </div>
+                            <p class="m-0">Lịch sử đơn hàng</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="/taikhoan" class="text-decoration-none text-color">
+                        <div class="user w-100 bg-white d-flex flex-column align-items-center justify-content-center p-3 rounded-3 gap-2">
+                            <img src="https://theme.hstatic.net/200000823693/1001172883/14/account.png?v=978" alt="" width="23px">
+                            <p class="name m-0">
+                                Hello,
+                                <span class=" text-main fw-bold">
+                                    @if (Session["user"] != null)
+                                    {
+                                        var user = Session["user"] as dynamic;
+                                        @user.FirstName
+                                    }
+                                </span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            @if (ViewBag.details != null)
+            {
+                foreach (var item in ViewBag.details)
+                {
+                    <div class="col-12 bg-white p-3 mt-2 rounded-3">
+                        <p class="text-main fw-bold fs-5">Chi tiết đơn hàng <span>#@item.orderId</span></p>
+                        <div class="border-bottom pb-3">
+                            @item.created_at
+                        </div>
+                        <div class="py-3 border-bottom">
+                            <p class="text-main fw-bold fs-5">Thông tin giao hàng</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span>Tên người nhận: @item.Shipping.fullName</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="m-0">Số điện thoại: @item.Shipping.phoneNumber</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <p class="m-0">Địa chỉ giao hàng : @(item.Shipping.Address + " ," + item.Shipping.ward + " ," + item.Shipping.district)</p>
+                            <span></span>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <p class="m-0">Phương thức thanh toán</p>
+                            <span class="text-success fw-bold">
+                                @item.Shipping.PhuongThuc
+                            </span>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <p class="m-0 fw-bold">Danh sách sản phẩm</p>
+                            <div class="orders">
+                                <div class="row align-items-center mt-2 border p-3 rounded-3">
+                                    @{ 
+                                        var total = 0;
+                                    }
+                                    @foreach (var itemdetails in item.OrderDetails)
+                                    {
+                                        total += itemdetails.quantity * @itemdetails.price_at_order;
+                                        <div class="col-3 col-md-1 fw-bold pl-1 pr-1 qty text-center text-dark">
+                                            @itemdetails.quantity x
+                                        </div>
+                                        <div class="image_order col-2 text-center pl-1 pr-1 d-none d-md-block">
+                                            <a href="">
+                                                <img loading="lazy" src="@itemdetails.Product.image" alt="" class="img-fluid w-50">
+                                            </a>
+                                        </div>
+                                        <div class="content_right col-9 col-md-7 pl-1 pr-1">
+                                            <a class="title_order fw-bold text-decoration-none text-color" href="" title="iPhone 13 256GB - Hồng">
+                                                @itemdetails.Product.nameProduct
+                                                <p class="m-0">@itemdetails.mausac</p>
+                                            </a>
+
+                                            <p class="sku_order m-0">
+                                            <p>@itemdetails.Product.price.ToString("#,0")₫</p>
+                                            </p>
+                                            <small class="d-block">
+                                              
+                                            </small>
+                                        </div>
+                                        <div class="price total col-12 col-md-2 text-right fw-bold pl-1 pr-1 text-main">
+                                            @((@itemdetails.quantity * @itemdetails.price_at_order).ToString("#,0"))₫
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="border-bottom pt-2 pb-2">
+                                <div class="row m--1">
+                                    <div class="col-6 pl-1 pr-1">
+                                        Tổng tiền sản phẩm
+                                    </div>
+                                    <div class="col-6 pl-1 pr-1 text-main fw-bold">
+                                        @total.ToString("#,0")₫
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-bottom pt-2 pb-2">
+                                <div class="row m--1">
+                                    <div class="col-6 pl-1 pr-1">
+                                        Phí vẫn chuyển
+                                    </div>
+                                    <div class="col-6 pl-1 pr-1 text-main fw-bold">
+                                        @item.giaVanChuyen.ToString("#,0")₫
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-bottom pt-2 pb-2">
+                                <div class="row m--1">
+                                    <div class="col-6 pl-1 pr-1 fw-bold">
+                                        Tổng cộng
+                                    </div>
+                                    <div class="col-6 pl-1 pr-1 text-main fw-bold">
+                                        @((item.giaVanChuyen + total).ToString("#,0"))₫
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-12 col-lg-4 mt-lg-0 mt-3">
+            <div class="account-action bg-white p-3 pr-3 rounded-3">
+                <div class="item_ac pt-3 pb-3 border-bottom">
+                    <span class="text-main fw-bold">Thông tin cá nhân</span>
+                </div>
+                <div class="item_ac pt-3 pb-3 border-bottom">
+                    <span class="ml-3">Quản lý địa chỉ</span>
+                </div>
+                <div class="item_ac pt-3 pb-3">
+                    <a href="" class="ml-3 logoutAccount text-color text-decoration-none logout-login">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

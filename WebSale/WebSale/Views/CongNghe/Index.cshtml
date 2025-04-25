@@ -1,0 +1,130 @@
+﻿@model List<WebSale.Models.DanhMucBlog>
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var blogCounts = ViewBag.blogCounts as List<WebSale.Models.CategoryBlogCount>;
+}
+<div class="login-nav-top mt-5 mt-lg-0">
+    <div class="container">
+        <ul class="mt-3 mt-lg-0">
+            <li>
+                <a href="index.html">Trang chủ</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="technology.html">Công nghệ</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="my-4">
+    <div class="container blog p-3 rounded-2 bg-white">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/blogs/@ViewBag.listblog.BlogDefault.DanhMucBlog.slug/@ViewBag.listblog.BlogDefault.slug" class="text-color text-decoration-none">
+                    <img loading="lazy"
+                         src="@ViewBag.listblog.BlogDefault.image_thumb"
+                         class="img-fluid rounded-3">
+
+                    <span class="line_1 mt-2 mb-2 text-color fw-bold">
+                        @ViewBag.listblog.BlogDefault.tieu_de
+                    </span>
+                    <p style="font-size:14px; width:600px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;">
+                        @ViewBag.listblog.BlogDefault.content
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-6">
+                @foreach (var item in ViewBag.listBlog.BlogList)
+                {
+                   <a href="/blogs/@item.DanhMucBlog.slug/@item.slug" class="text-color text-decoration-none">
+                       <div class="row mb-3">
+                           <div class="col-4 col-lg-3 p-0">
+                               <img loading="lazy"
+                                    src="@item.image_thumb"
+                                    class="rounded-3 img-fluid">
+                           </div>
+                           <div class=" col-8 col-lg-9">
+                               <p class="m-0 blog-title">
+                                   @item.tieu_de
+                               </p>
+                               <p class="mb-0 mt-2 blog-date"> @(item.ngay_dang.ToString("dd/MM/yyyy"))</p>
+                               <p class="m-0 line_2 text-color" style="font-size:14px">
+                                   @item.content
+                               </p>
+                           </div>
+                       </div>
+                   </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container p-3 rounded-3 bg-white mb-5">
+        <h3 class="align-items-center d-flex fw-bold pt-2 pt-lg-0">
+            <img class="" src="https://file.hstatic.net/200000823693/file/hot_ico_64b0f111b2bf41a9a9e643f07c412260.png" alt="Chủ đề Hot">
+            <span class="text-color">Chủ đề Hot</span>
+        </h3>
+        <div class="b-tech">
+            <ul class="list-unstyled d-flex align-items-center gap-3 flex-wrap">
+                @foreach (var item in Model)
+                {
+                    var blogCount = blogCounts?.FirstOrDefault(b => b.slug == item.slug)?.BlogCount ?? 0;
+
+                    <a href="/blogs/@item.slug" class="text-decoration-none text-color d-block">
+                    <li class="d-flex align-items-center gap-3 p-1">
+                        <img src="@item.hinh_anh" alt="">
+                        <div class="">
+                            <p class="m-0">@item.ten</p>
+                            <span>@blogCount bài viết</span>
+                        </div>
+                    </li>
+                    </a>
+                }
+
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container mt-4 bg-white rounded-3 mb-4 p-3">
+        <h4 class="mb-4 text-main">
+            <strong>
+                @ViewBag.title
+            </strong>
+        </h4>
+        <div class="row">
+            @foreach (var item in ViewBag.listblogboot)
+            {
+                <div class="col-md-4 ">
+                    <a href="/blogs/@item.DanhMucBlog.slug/@item.slug" class="text-decoration-none">
+                        <div class="card news-card blog-item">
+                            <div class="position-relative">
+                                <img alt="Image of Vivo S18 smartphones" class="card-img-top zoom" src="@item.image_thumb" />
+                                <div class="news-date rounded-right text-center">
+                                    <span class="fw-bold">
+                                        @(item.ngay_dang.ToString("dd"))
+                                    </span>
+                                    <span>
+                                        @(item.ngay_dang.ToString("MM/yyyy"))
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="news-title text-color fw-bold" style="font-size:16px; width:400px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;">
+                                    @item.tieu_de
+                                </h5>
+
+                                <p class="news-description" style="font-size:14px; width:400px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;">
+                                   @item.content
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+

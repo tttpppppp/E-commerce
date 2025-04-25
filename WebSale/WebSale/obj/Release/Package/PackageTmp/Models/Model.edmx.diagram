@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c2d5819fd06f4b0e96daddf4f75434c3" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="WebBanHangASPModel.Admin" Width="1.5" PointX="13.125" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Brand" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Order" Width="1.5" PointX="9.625" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.OrderDetail" Width="1.5" PointX="9.625" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.ThongSoKyThuat" Width="1.5" PointX="16.125" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Type" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.User" Width="1.5" PointX="4.375" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__Order__userId__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__OrderDeta__order__3C34F16F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Category" Width="1.5" PointX="4.75" PointY="1.25" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Product" Width="1.5" PointX="7" PointY="3.875" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__Products__brandI__339FAB6E" />
+        <AssociationConnector Association="WebBanHangASPModel.FK_Products_Categories" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__OrderDeta__produ__3D2915A8" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__Products__specif__3587F3E0" />
+        <AssociationConnector Association="WebBanHangASPModel.FK__Products__typeId__3493CFA7" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Shipping" Width="1.5" PointX="14.125" PointY="4.125" />
+        <AssociationConnector Association="WebBanHangASPModel.FK_Order_Shipping" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.ProductImage" Width="1.5" PointX="9.25" PointY="10.75" />
+        <AssociationConnector Association="WebBanHangASPModel.FK_ProductImages_Products" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

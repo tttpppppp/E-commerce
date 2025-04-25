@@ -1,0 +1,75 @@
+﻿@model List<WebSale.Models.Wishlist>
+@{
+    ViewBag.Title = "Sản phẩm yêu thích";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="flash-list d-flex align-items-center flex-wrap container mb-3">
+    @if (Session["user"] != null)
+    {
+        if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="flash-item position-relative">
+                    <a href="/products/@item.Product.slug">
+                        <img loading="lazy"
+                             src="@item.Product.image"
+                             alt="@item.Product.nameProduct"
+                             class="img-fluid">
+                    </a>
+                    <div class="flash-text">
+                        <div class="sold-module d-flex w-100 position-relative text-left">
+                            <img loading="lazy"
+                                 src="//theme.hstatic.net/200000823693/1001172883/14/hot-sale.png?v=978"
+                                 decoding="async"
+                                 class="position-absolute"
+                                 alt="Sắp Cháy hàng">
+                            <div class="d-flex align-items-center justify-content-center sold position-absolute h-100 w-100">
+                                @(item.Product.quantity <= 0 ? "Đã bán hết" :
+               (item.Product.sold_quantity >= 0.9 * (item.Product.sold_quantity + item.Product.quantity) ? "Sắp Cháy hàng" : "Đã bán: " + item.Product.sold_quantity))
+                            </div>
+                            <div class="remain modal-open position-absolute h-100"
+                                 style="width:@((item.Product.quantity > 0 ? ((double)item.Product.sold_quantity / (item.Product.sold_quantity + item.Product.quantity)) * 100 : 0) + "%")">
+                            </div>
+                        </div>
+                        <p class="m-0 text-truncate" style="max-width: 200px; overflow: hidden;" title="@item.Product.nameProduct">
+                            @item.Product.nameProduct
+                        </p>
+
+                        <div class="price">
+                            <span class="">@(item.Product.price.ToString("#,0"))₫</span>
+                            <span class="price-sale">@((item.Product.sale_price ?? item.Product.price).ToString("#,0"))₫</span>
+                        </div>
+                    </div>
+                    @if (item.Product.percen_sale > 0)
+                    {
+                        <span class="label-sale position-absolute">
+                            Giảm @item.Product.percen_sale%
+                        </span>
+                    }
+                    <div class="cart cart-static" data-product-id="@item.Product.productId">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <span class="close-yeuthich" data-product-id="@item.productId">
+                        X
+                    </span>
+                </div>
+        }
+    }
+    else
+                {
+                    <div class="text-center w-100 my-5">
+                        <p>Chưa có sản phẩm yêu thích nào</p>
+                    </div>
+                }
+    }
+    else
+    {
+        <div class="text-center w-100 py-5">
+            <img src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png" alt="Alternate Text" width="100px" />
+            <p class="mt-4">Vui lòng đăng nhập để thêm sản phẩm yêu thích</p>
+        </div>
+    }
+</div>
+

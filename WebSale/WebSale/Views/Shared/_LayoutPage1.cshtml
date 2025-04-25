@@ -1,0 +1,1955 @@
+﻿@{ 
+    var categories = new WebSale.Models.WebBanHangASPEntities3().Categories.Take(8).ToList();
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>@ViewBag.title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta property="og:title" content="@ViewBag.title">
+    <meta property="og:description" content="A description of the content for social media.">
+    <meta property="og:image" content="https://file.hstatic.net/200000823693/file/logo_f06b40e76f4e462b9be384df2a27f075.png">
+    <meta property="og:url" content="https://example.com/your-page-url">
+    <meta name="robots" content="index, follow">
+    <link href="~/assets/style.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous" />
+    <link rel="shortcut icon"
+          href="https://file.hstatic.net/200000823693/file/favicon_57c734b04e1e4e918b68e996bf90399c.png"
+          type="image/x-icon">
+    <link rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+          integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+          integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+    <div id="topBarHeader"><div class="d-flex justify-content-center align-content-center gap-2"><div class="pulsingButton mr-3"></div> <a href="/blackfriday/">Black Fire-Day 2024 - Săn voucher ngay!</a></div></div>
+    <header>
+        <div class="container">
+            <div class="menu-top">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 p-1 position-relative">
+                        <a class="text-decoration-none text-black"
+                           href="/">
+                            <img loading="lazy"
+                                 src="https://file.hstatic.net/200000823693/file/logo_f06b40e76f4e462b9be384df2a27f075.png"
+                                 alt=""
+                                 class="img-fluid pointer-event">
+                        </a>
+                    </div>
+                    <div class="p-0 top-right col-lg-10 d-flex align-items-center gap-2">
+                        <a class="system" href="/hethongchinhanh/">
+                            <p>Hệ thống cửa hàng</p>
+                            <p class="fw-bold">(45 chi nhánh)</p>
+                        </a>
+                        <form class="form-search position-relative" method="get" action="/search/">
+                            <div>
+                                <input type="text"
+                                       placeholder="Bạn tìm gì hôm nay?" style="font-size : 14px" name="keyword" id="productSearch">
+                                <input type="hidden" name="page" value="1">
+                                <button type="submit" class="btn-search">
+                                    <i class="fa-solid fa-magnifying-glass" style="font-size : 16px"></i>
+                                </button>
+                                <div class="suggestions">
+                                    <div class="suggestions-header">
+                                        Sản phẩm gợi ý
+                                    </div>
+
+                                </div>
+                                <div class="container-menuserach">
+                                    @*<div class="banner">
+                                        <img src="https://cdn2.cellphones.com.vn/x/https://dashboard.cellphones.com.vn/storage/b2s-update-19-06%20(1).jpg" alt="Back to School 2024" />
+                                    </div>*@
+                                    <div class="search-history">
+                                        <h2>
+                                            <div class="history-text">
+                                                Lịch sử tìm kiếm
+                                                <i class="far fa-clock">
+                                                </i>
+                                            </div>
+                                            <span style="font-size: 14px; color: #86888d; cursor: pointer;">
+                                                Xóa tất cả
+                                                <i class="fas fa-trash-alt">
+                                                </i>
+                                            </span>
+                                        </h2>
+                                        @{
+                                            // Retrieve the cookie directly in the view
+                                            HttpCookie keywordCookie = Request.Cookies["searchKeywords"];
+                                            List<string> keywordList = new List<string>();
+
+                                            // Check if the cookie exists and extract the keywords
+                                            if (keywordCookie != null)
+                                            {
+                                                keywordList = keywordCookie.Value.Split(',').ToList(); // Split the keywords by commas
+                                            }
+                                        }
+
+                                        @if (keywordList != null && keywordList.Count > 0)
+                                        {
+                                            var recentKeywords = keywordList.Skip(Math.Max(0, keywordList.Count - 5)).ToList();
+                                            for (int i = recentKeywords.Count - 1; i >= 0; i--)
+                                            {
+                                                <p>@recentKeywords[i]</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>No keywords found in cookies.</p>
+                                        }
+                                    </div>
+                                    <div class="trending">
+                                        <h2>
+                                            Xu hướng tìm kiếm
+                                            <i class="fas fa-fire">
+                                            </i>
+                                        </h2>
+                                        <div class="trending-items">
+                                            <div class="trending-item">
+                                                <img alt="iPhone 16 Series" height="50" src="https://storage.googleapis.com/a1aa/image/OgeCSolr6ERQQKzF0cDeZLSsVv8bbF1x3deYedPqs5FewNIdC.jpg" width="50" />
+                                                <p>
+                                                    iPhone 16 Series
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Galaxy Z Fold6" height="50" src="https://storage.googleapis.com/a1aa/image/5SBpsUD7hxriClAKcNju8rLXbNLbBMxRCOUbFJEN7tNjbQ6E.jpg" width="50" />
+                                                <p>
+                                                    Galaxy Z Fold6
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="iPad Pro 2024" height="50" src="https://storage.googleapis.com/a1aa/image/aSMt3HdMt4r8MV3dp6NmLJGK9w8s4q0hCN57rHYluf2B3g0JA.jpg" width="50" />
+                                                <p>
+                                                    iPad Pro 2024
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Macbook Air M3" height="50" src="https://storage.googleapis.com/a1aa/image/jaEDAl1djBrfAqii5N9jTZKiaiyDQvfEUrhM99vZ2yfUcDSnA.jpg" width="50" />
+                                                <p>
+                                                    Macbook Air M3
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Galaxy S24 FE" height="50" src="https://storage.googleapis.com/a1aa/image/H2VyGjoLc2K0IlwgmjXQlxR3pBxBAp0oevbzWX6ADxxC3g0JA.jpg" width="50" />
+                                                <p>
+                                                    Galaxy S24 FE
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="JBL PartyBox Stage 320" height="50" src="https://storage.googleapis.com/a1aa/image/KPYMev9j3sUpL6cLqSw0fMuylezs6gtkEXYeR0Xyrr904GkOB.jpg" width="50" />
+                                                <p>
+                                                    JBL PartyBox Stage 320
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Apple Watch Series 10" height="50" src="https://storage.googleapis.com/a1aa/image/mZB6AVb0a8JEDtR2JXSSNJf5edegtFfD6K5B2qfeGNIMgbQ6E.jpg" width="50" />
+                                                <p>
+                                                    Apple Watch Series 10
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Laptop AI" height="50" src="https://storage.googleapis.com/a1aa/image/5fotbcJo2O1yHSrKV8eOTHEJYkGq1OhfF5ipFddN4fhl4GkOB.jpg" width="50" />
+                                                <p>
+                                                    Laptop AI
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="AirPods 4" height="50" src="https://storage.googleapis.com/a1aa/image/tzQJdjFiQcrGN9S1zow2Pp59ENKteD548DvgeTGKYfIEcDSnA.jpg" width="50" />
+                                                <p>
+                                                    AirPods 4
+                                                </p>
+                                            </div>
+                                            <div class="trending-item">
+                                                <img alt="Nồi chiên không dầu" height="50" src="https://storage.googleapis.com/a1aa/image/QkRGLMejfiim3UzEPqYymQHmCOeaBV6CfGbO1OM6DAcZ4GkOB.jpg" width="50" />
+                                                <p>
+                                                    Nồi chiên không dầu
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="blog-block">
+                            <a class="blog-block-abs" href="/blogs/24-cong-nghe">24 Công nghệ</a>
+                            <a href="/blogs/su-kien">Sự kiện</a>
+                        </div>
+                        <div class="phone">
+                            <div class="text-white contact d-flex align-items-center gap-2 me-2">
+                                <i class="fa-solid fa-phone-volume"></i>
+                                <div class="text-white">
+                                    <span>Hotline</span>
+                                    <p class="m-0">900.636.099</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <div class="text-white contact d-flex align-items-center gap-2">
+                                <i class="fa-regular fa-user fs-4"></i>
+                                <div class="user-text text-white">
+                                    @if (Session["user"] != null)
+                                    {
+                                        <span>
+                                            @{
+                                                var user = Session["user"] as dynamic;
+                                                if (user != null)
+                                                {
+                                                    <a href="/taikhoan">@user.FirstName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a>Khách</a>
+                                                }
+                                            }
+                                        </span>
+                                        <p class="m-0 logout-login"><a href="">Đăng xuất</a></p>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            <a href="/dangnhap">
+                                                Đăng
+                                                nhập
+                                            </a>
+                                        </span>
+                                        <p class="m-0"><a href="/dangki">Đăng kí</a></p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-menu position-relative">
+                            <div class="d-flex align-items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                                </svg>
+                                <div class="cart-text">
+                                    <a href="/cart" class="text-decoration-none text-white">
+                                        <span>Giỏ</span>
+                                        <p class="m-0">hàng</p>
+                                    </a>
+                                </div>
+                                <div class="count position-absolute d-flex align-items-center justify-content-center fw-bold"
+                                     style="width: 21px; height: 21px; background: white; color: #d70018; border-radius: 50%; font-size: 10px; top: 0; left: 11px; z-index: 10;">
+                                    <div id="countLast" class="countLast">
+                                        @{
+                                            int totalItems = 0;
+                                            if (Session["Cart"] != null)
+                                            {
+                                                var cart = (List<WebSale.Models.CartItem>)Session["Cart"];
+                                                totalItems = cart.Count();
+                                            }
+                                        }
+                                        @totalItems
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="menu">
+                @if (categories != null && categories.Count > 0)
+                {
+                    foreach (var item in categories)
+                    {
+                        <li>
+                            <a href="/category/@item.slug">@item.nameCategory</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </header>
+    <div class="menu-mobile">
+        <div class="container">
+            <div class="d-flex align-items-center gap-4">
+                <a href="index.html" class="d-block">
+                    <img loading="lazy" src="./img/logo_mobi.webp" alt
+                         class="img-fluid"
+                         style="width: 100px;">
+                </a>
+                <div class="form-search">
+                    <input type="text" class="w-100"
+                           placeholder="Bạn muốn tìm gì?...">
+                    <button type="submit" class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <a href="login.html"
+                   class="text-white text-decoration-none mt-lg-0 mt-2">
+                    <i class="fa-regular fa-user fs-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="menu-mobile-mb">
+        <div class="d-flex align-items-center justify-content-center gap-2 pt-2">
+            <div style="width: 20%;" class="text-center active">
+                <a href="index.html" class="active-color">
+                    <i class="fa-solid fa-house-user"></i>
+                    <p class>Trang chủ</p>
+                </a>
+            </div>
+            <div style="width: 20%;" class="text-center">
+                <a href>
+                    <i class="fa-regular fa-heart"></i></i>
+                    <p>Yêu thích</p>
+                </a>
+            </div>
+            <div style="width: 20%;" class="text-center">
+                <a href>
+                    <i class="fa-solid fa-bars"></i>
+                    <p>Danh mục</p>
+                </a>
+            </div>
+            <div style="width: 20%;" class="text-center">
+                <a href>
+                    <i class="fa-regular fa-message"></i>
+                    <p>Tư vấn</p>
+                </a>
+            </div>
+            <div style="width: 20%;" class="text-center">
+                <a href="cart.html">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p>Giỏ hàng</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+    <div class="overlay-layer"></div>
+    <section class="bg-white p-4">
+        <div class="container">
+            <div class="row mt-3 mb-5">
+                <div class="col-sm-12 col-lg-6 col-md-7 p-0">
+                    <img loading="lazy"
+                         src="https://file.hstatic.net/200000823693/file/logo_foo_320e3cee3eba49c4ae45be243a914d15.png"
+                         width="200px" class="mb-2">
+                    <address class="vcard mb-2">
+                        <p class="adr m-0">
+                            <b>Hà Nội: </b>Tầng 3,
+                            tòa nhà The Artemis, số 03 Lê Trọng Tấn,
+                            Khương
+                            Mai, Thanh Xuân, Hà Nội
+                        </p>
+                        <p class="m-0">
+                            <b>Hotline: </b><a class="text-decoration-none text-black"
+                                               href="tel:1900636099"
+                                               title="1900.636.099">1900.636.099</a>
+                        </p>
+                        <p class="adr m-0">
+                            <b>HCM: </b>Lầu 6, 182 Lê
+                            Đại Hành, P.15, Quận 11, Tp.HCM
+                        </p>
+                        <p class="m-0">
+                            <b>Hotline: </b><a class="text-decoration-none text-black"
+                                               href="tel:1900636099"
+                                               title="1900.636.099">1900.636.099</a>
+                        </p>
+                        <p class="m-0">
+                            <b>Email: </b><a class="text-decoration-none text-black"
+                                             href="mailto:support@haravan.com"
+                                             title="support@haravan.com">support@haravan.com</a>
+                        </p>
+                    </address>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6 p-0">
+                    <h3 class="footer-title mb-2 position-relative fw-bold">
+                        Chính
+                        sách
+                    </h3>
+                    <ul class="links list-unstyled m-0 p-0">
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href title="Tìm kiếm">
+                                Tìm
+                                kiếm
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href title="Giới thiệu">
+                                Giới
+                                thiệu
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href
+                               title="Chính sách đổi trả">
+                                Chính
+                                sách
+                                đổi trả
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href
+                               title="Chính sách bảo mật">
+                                Chính
+                                sách
+                                bảo mật
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href title="Điều khoản dịch vụ">
+                                Điều
+                                khoản
+                                dịch vụ
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="text-decoration-none text-black"
+                               href title="Liên hệ">
+                                Liên
+                                hệ
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6 p-0 footter-sp">
+                    <h3 class="footer-title mb-2 position-relative fw-bold">
+                        Hỗ
+                        trợ
+                    </h3>
+                    <div class="d-flex align-items-center gap-1">
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/facebook_ce742afdcdea4026a633915bdfdce6f5.png"
+                             alt class>
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/twitter_b15cb1006ec04c63855aef2dec8fac47.png"
+                             alt>
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/instagram_45effdfd0d0e47d986a7c8b1a8e2ab01.png"
+                             alt>
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/youtube_749d73527fb94f2c8d005d2ffdb1ca10.png"
+                             alt>
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/shopee_efcb449798c24dd4a4a312f1ad9e3e8d.png"
+                             width="32px" alt>
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000785527/file/lazada_0080ef48005044af8ba3f720097866f7.jpg"
+                             width="32px" alt class="rounded-5">
+                    </div>
+                    <p class="mt-2">Phương thức thanh toán</p>
+                    <div class="d-flex align-items-center gap-1">
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000823693/file/payment-1_2c94a9495fa04f4ab8b11be786441266.png"
+                             alt width="45px">
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000823693/file/payment-2_bdbf0ab7d5d24e138faa24e497b38a9b.png"
+                             alt width="45px">
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000823693/file/payment-3_3a8dba86bfd74a85be3db17837d4c9c6.png"
+                             alt width="45px">
+                        <img loading="lazy"
+                             src="https://file.hstatic.net/200000823693/file/payment-4_f03f301a303c448db851de3e9e91ade2.png"
+                             alt width="45px">
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top border-bottom py-4">
+                <ul class="links_sm list-unstyled row mb-0 p-0">
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/dien-thoai-iphone"
+                           title="IPhone">IPhone</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/tablet"
+                           title="Máy tính bảng">
+                            Máy tính
+                            bảng
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/macbook"
+                           title="Macbook">Macbook</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/phu-kien-laptop"
+                           title="Phụ kiện laptop">
+                            Phụ kiện
+                            laptop
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/smartwatch"
+                           title="Smartwatch">Smartwatch</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/cap-sac"
+                           title="Cáp sạc">Cáp sạc</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/dan-man-hinh"
+                           title="Dán màn hình">
+                            Dán màn
+                            hình
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/op-lung-bao-da"
+                           title="Ốp lưng - bao da">
+                            Ốp lưng - bao
+                            da
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/pin-du-phong"
+                           title="Pin dự phòng">
+                            Pin dự
+                            phòng
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/tai-nghe"
+                           title="Tai nghe">Tai nghe</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/thiet-bi-mang"
+                           title="Thiết bị mạng">
+                            Thiết bị
+                            mạng
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/tivi"
+                           title="Tivi">Tivi</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/may-hut-bui"
+                           title="Robot hút bụi">
+                            Robot hút
+                            bụi
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/quat-thong-minh"
+                           title="Quạt thông minh">
+                            Quạt thông
+                            minh
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/chuot-ban-phim"
+                           title="Chuột, bàn phím">
+                            Chuột, bàn
+                            phím
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/thiet-bi-luu-tru"
+                           title="USB">USB</a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/balo-laptop"
+                           title="Balo chống sốc">
+                            Balo chống
+                            sốc
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/camera-an-ninh"
+                           title="Camera an ninh">
+                            Camera an
+                            ninh
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/camera-du-lich"
+                           title="Camera du lịch">
+                            Camera du
+                            lịch
+                        </a>
+                    </li>
+
+                    <li class="col-6 col-sm-4 col-md-3 col-lg-2 m-0">
+                        <a class="text-decoration-none text-black"
+                           href="/collections/o-cung"
+                           title="Ổ cứng">Ổ cứng</a>
+                    </li>
+
+                </ul>
+            </div>
+            <span class="d-block mt-2 text-center pb-5 pb-lg-0">
+                Bản
+                quyền thuộc về Tran Tien Phuc. Powered by
+                TPP
+            </span>
+        </div>
+    </section>
+    <div class="">
+        <a href="#" class="text-decoration-none scrol-top text-light">
+            <i class="fa-solid fa-chevron-up"></i>
+            <span>Lên đầu</span>
+        </a>
+    </div>
+    <div class="notification">
+        <svg height="15" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check-circle"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z" class=""></path></svg>
+        Đã thêm vào danh sách yêu thích!
+    </div>
+    <div class="fix-phone text-center">
+        <div class="d-flex flex-column">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-facebook-messenger"></i>
+            <i class="fa-solid fa-phone-volume"></i>
+            <a href="/yeuthich" class="text-decoration-none"><i class="fa-solid fa-heart"></i></a>
+        </div>
+    </div>
+    <script src="~/assets/js.js?v=@DateTime.Now.Ticks"></script>
+    <!-- jQuery (nếu chưa có) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @Html.Raw(@"<script src=""https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js""></script>
+")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function debounce(func, delay) {
+                let timer;
+                return function (...args) {
+                    const context = this;
+                    clearTimeout(timer); // Xóa timer nếu người dùng tiếp tục bấm
+                    timer = setTimeout(() => func.apply(context, args), delay); // Gửi yêu cầu sau thời gian trễ
+                };
+            }
+            $('.cart').click(debounce(function () {
+                var $this = $(this); // Lưu trữ tham chiếu tới nút đang được bấm
+                var productId = $this.data('product-id');
+                var mausac = $("#mauSacDefaultHome").val();
+                $.ajax({
+                    url: '/Admin/Product/addToCart',
+                    type: 'POST',
+                    data: {
+                        id: productId,
+                        mausac: mausac
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            // Hiển thị thông báo thành công
+                            toastr.success('Thêm sản phẩm thành công', 'Thành công', {
+                                timeOut: 1000,
+                            });
+                            // Cập nhật số lượng sản phẩm trong giỏ
+                            $(".countLast").text(response.count);
+                        } else {
+                            // Hiển thị thông báo lỗi từ server
+                            toastr.error(response.message, 'Cảnh báo', {
+                                timeOut: 1000,
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        // Hiển thị thông báo lỗi chung
+                        toastr.error('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.', 'Lỗi', {
+                            timeOut: 3000,
+                            closeButton: true,
+                            progressBar: true,
+                            escapeHtml: false
+                        });
+                        // Ghi log chi tiết lỗi để dễ dàng debug
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function () {
+                        // Kích hoạt lại nút sau khi hoàn tất yêu cầu AJAX
+                        $this.prop('disabled', false);
+                    }
+                });
+            }, 300));
+            $(document).on("click", ".addCount", debounce(function (e) {
+                var productid = $(this).data('product-id');
+                var imageid = $(this).data('image-id');
+                var quantityInput = $(this).siblings('.quantity-input');
+                var currentQuantity = parseInt(quantityInput.val()) || 0;
+                var priceElement = $(".price-item-cart[data-product-id='" + productid + "']");
+                var priceElementImageid = $(".price-item-cart[data-image-id='" + imageid + "']");
+                var totalPrice = $(".totalPrice");
+                var action = "Add";
+                var newQuantity = currentQuantity + 1;
+
+                // Gửi yêu cầu AJAX để cập nhật giỏ hàng
+                $.ajax({
+                    url: "/Admin/Product/updateCart",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        productid: productid,
+                        quantity: newQuantity,
+                        imageid: imageid,
+                        action: action
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            // Cập nhật số lượng và giá khi nhận phản hồi từ server
+                            quantityInput.val(response.newQuantity);
+                            if (response.imageid != -1) {
+                                priceElementImageid.text(response.newPrice.toLocaleString() + "₫");
+                            } else {
+                                priceElement.text(response.newPrice.toLocaleString() + "₫");
+                            }
+                            totalPrice.text(response.totalPrice.toLocaleString() + "₫");
+                        } else {
+                            console.error("Cập nhật không thành công:", response.message);
+                        }
+                    },
+                    error: function () {
+                        console.error("Lỗi khi cập nhật giỏ hàng.");
+                    }
+                });
+            }, 300));
+            $(document).on("click", ".minusCount", debounce(function (e) {
+                var productid = $(this).data('product-id');
+                var imageid = $(this).data('image-id');
+                var quantityInput = $(this).siblings('.quantity-input');
+                var currentQuantity = parseInt(quantityInput.val()) || 0;
+                var priceElement = $(".price-item-cart[data-product-id='" + productid + "']");
+                var priceElementImageid = $(".price-item-cart[data-image-id='" + imageid + "']");
+                var totalPrice = $(".totalPrice");
+                var action = "Delete";
+
+                // Chỉ cho phép giảm nếu số lượng hiện tại lớn hơn hoặc bằng 2
+                if (currentQuantity >= 2) {
+                    var newQuantity = currentQuantity - 1;
+
+                    $.ajax({
+                        url: "/Admin/Product/updateCart",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            productid: productid,
+                            quantity: newQuantity,
+                            imageid: imageid,
+                            action: action
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                // Cập nhật số lượng và giá khi nhận phản hồi từ server
+                                quantityInput.val(response.newQuantity);
+                                if (response.imageid != -1) {
+                                    priceElementImageid.text(response.newPrice.toLocaleString() + "₫");
+                                } else {
+                                    priceElement.text(response.newPrice.toLocaleString() + "₫");
+                                }
+                                totalPrice.text(response.totalPrice.toLocaleString() + "₫");
+                            } else {
+                                console.error("Cập nhật không thành công:", response.message);
+                            }
+                        },
+                        error: function () {
+                            console.error("Lỗi khi cập nhật giỏ hàng.");
+                        }
+                    });
+                } else {
+                    console.log("Số lượng không thể nhỏ hơn 1.");
+                }
+            }, 300)); // Khoảng thời gian debounce là 300ms (có thể điều chỉnh)
+            $(document).on("click", ".delete-cart", function (e) {
+
+                var productid = $(this).data('product-id');
+                var imageid = $(this).data('image-id');
+
+                var productContainer = $(this).closest(".p-4.border.rounded-4.position-relative.mb-3");
+                var totalPrice = $(".totalPrice");
+                console.log(imageid)
+                $.ajax({
+                    url: "/Admin/Product/deleteCart",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        productid: productid,
+                        imageId: imageid
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            productContainer.remove();
+                            totalPrice.text(response.totalPrice.toLocaleString());
+                            $(".countLast").text(response.count);
+                            if (response.count <= 0) {
+                                $("#listcart").html(`
+                                       <div class="container mt-5">
+                                            <div class="row">
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <img src="https://cdn2.cellphones.com.vn/x,webp/media/cart/Cart-empty-v2.png" alt="" width="250px">
+                                                    <p>
+                                                    <p class="m-0">  Giỏ hàng của bạn đang trống.</p>
+                                                        Hãy chọn thêm sản phẩm để mua sắm nhé
+                                                    </p>
+                                                    <div class="container mt-5">
+                                                        <a href="/" class="custom-home mb-5 text-decoration-none d-inline-block">Quay lại trang chủ</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `);
+                            }
+                            if (response.checkGift == true || response.checkIssetGift == true) {
+                                window.location.href = "/cart";
+                            }
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            $(document).on("click", ".delete-all-cart", function (e) {
+                var totalPrice = $(".totalPrice");
+                $.ajax({
+                    url: "/Admin/Product/deleteAllCart",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $(".p-4.border.rounded-4.position-relative.mb-3").remove();
+                            totalPrice.text(response.totalPrice.toLocaleString());
+                            $(".countLast").text(response.count);
+                            if (response.count <= 0) {
+                                $("#listcart").html(`
+                                        <div class="container mt-5">
+                                          <div class="row">
+                                              <div class="col-12 col-md-12 text-center">
+                                                  <img src="https://cdn2.cellphones.com.vn/x,webp/media/cart/Cart-empty-v2.png" alt="" width="250px">
+                                                  <p>
+                                                  <p class="m-0">  Giỏ hàng của bạn đang trống.</p>
+                                                      Hãy chọn thêm sản phẩm để mua sắm nhé
+                                                  </p>
+                                                  <div class="container mt-5">
+                                                      <a href="/" class="custom-home mb-5 text-decoration-none d-inline-block">Quay lại trang chủ</a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    `);
+                            }
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            $(document).on("click", ".dangnhap", function (e) {
+                e.preventDefault();
+                var email = $(".email-login").val().trim();
+                var password = $(".password-login").val().trim();
+
+                $.ajax({
+                    url: "/DangNhap/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                         email: email,
+                         password: password
+
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Đăng nhập thành công!',
+                                text: 'Chào mừng bạn đến với hệ thống của chúng tôi.',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).then(() => {
+                                window.location.href = '/taikhoan';
+                            });
+                        } else {
+                            // Xóa các lỗi cũ trước khi hiển thị lỗi mới
+                            $(".error-email, .error-password, .error-login").text("");
+
+                            // Kiểm tra lỗi cụ thể và hiển thị lỗi cho các trường
+                            if (response.errors) {
+                                if (response.errors.email) {
+                                    console.log(response.errors.email.join('<br>'));
+                                    $(".error-email").html(response.errors.email.join('<br>'));
+                                }
+                                if (response.errors.password) {
+                                    $(".error-password").html(response.errors.password.join('<br>'));
+                                }
+                            } else {
+                                // Nếu không có lỗi trường, hiển thị lỗi chung
+                                $(".error-login").text(response.error);
+                            }
+                        }
+                    },
+                    error: function () {
+                        $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+            $(document).on("click", ".btn-updateuser", function (e) {
+                e.preventDefault();
+                var email = $(".email-up").val();
+                var firstname = $(".firstname-up").val();
+                var lastname = $(".lastname-up").val();
+                var mobile = $(".mobile-up").val();
+                var address = $(".address-up").val();
+
+                $.ajax({
+                    url: "/TaiKhoan/updateUser",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        email: email,
+                        firstname: firstname,
+                        name: lastname,
+                        mobile: mobile,
+                        address: address
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Cập nhật thành công!',
+                                text: '',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).then(() => {
+                                window.location.href = '/taikhoan';
+                            });
+                        } else {
+                            $(".error-login").text(response.error);
+                        }
+                    },
+                    error: function () {
+                        $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+            $(document).on("click", ".logout-login", function (e) {
+                e.preventDefault();
+
+                // Display SweetAlert confirmation first
+                Swal.fire({
+                    title: 'Đăng xuất!',
+                    text: 'Bạn có chắc muốn đăng xuất?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Hủy bỏ',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Only proceed with AJAX if user confirms
+                        $.ajax({
+                            url: "/DangNhap/logout",
+                            type: "POST",
+                            dataType: "json",
+                            data: {},
+                            success: function (response) {
+                                if (response.isSuccess) {
+                                    // Redirect after successful logout
+                                    window.location.href = '/';
+                                } else {
+                                    $(".error-login").text(response.error);
+                                }
+                            },
+                            error: function () {
+                                $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                            }
+                        });
+                    }
+                });
+            });
+            $(document).on("click", ".btn-huydonuser", function (e) {
+                e.preventDefault();
+                var orderid = parseInt($(this).data('orderid'));
+                var button = $(this);
+                Swal.fire({
+                    title: 'Đơn hàng!',
+                    text: 'Bạn có chắc muốn hủy đơn?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Hủy bỏ',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/LichSuDonHang/huyDonUser",
+                            type: "POST",
+                            dataType: "json",
+                            data: {
+                                orderid: orderid
+                            },
+                            success: function (response) {
+                                if (response.isSuccess) {
+                                    Swal.fire({
+                                        title: 'Hủy đơn thành công!',
+                                        text: '',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK',
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                    }).then(() => {
+                                        // Sau khi hủy đơn thành công, disable nút và thay đổi nội dung nút
+                                        button.prop('disabled', true); // Vô hiệu hóa nút
+                                        button.text('Đã hủy đơn'); // Thay đổi nội dung của nút
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Hủy đơn thất bại!',
+                                        text: 'Vui lòng thử lại sau.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK',
+                                    });
+                                }
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    title: 'Lỗi!',
+                                    text: 'Có lỗi xảy ra. Vui lòng thử lại.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+            $(document).on("click", ".register-btn", function (e) {
+                e.preventDefault();
+
+                var email = $(".email-register").val();
+                var password = $(".password-register").val();
+                var repassword = $(".repassword-register").val();
+                var name = $(".name-register").val();
+                var firstname = $(".firstname-register").val();
+                var mobile = $(".mobile-register").val();
+                var address = $(".address-register").val();
+
+                $.ajax({
+                    url: "/DangKi/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        address: address,
+                        email: email,
+                        password: password,
+                        repassword: repassword,
+                        name: name,
+                        firstname: firstname,
+                        mobile: mobile
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Đăng kí!',
+                                text: 'Đăng kí thành công đăng nhập ngay!.',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).then(() => {
+                                window.location.href = '/dangnhap';
+                            });
+                        } else {
+                            if (response.errors) {
+                                if (response.errors.name) {
+                                    $(".error-firstname").html(response.errors.name.join("<br>"));
+                                }
+                                if (response.errors.firstName) {
+                                    $(".error-surename").html(response.errors.firstName.join("<br>"));
+                                }
+                                if (response.errors.mobile) {
+                                    $(".error-mobile").html(response.errors.mobile.join("<br>"));
+                                }
+                                if (response.errors.email) {
+                                    $(".error-email").html(response.errors.email.join("<br>"));
+                                }
+                                if (response.errors.address) {
+                                    $(".error-address").html(response.errors.address.join("<br>"));
+                                }
+                                if (response.errors.password) {
+                                    $(".error-password").html(response.errors.password.join("<br>"));
+                                }
+                                if (response.errors.repassword) {
+                                    $(".error-repassword").html(response.errors.repassword.join("<br>"));
+                                }
+                            } else {
+                                // General error message
+                                $(".error-register").text(response.error);
+                            }
+                        }
+                    },
+                    error: function () {
+                        $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+            $(document).on("click", ".close-yeuthich", function (e) {
+                e.preventDefault();
+                var productid = $(this).data("product-id");
+                var $this = $(this);
+                $.ajax({
+                    url: "/YeuThich/removeYeuThich",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: productid
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        if (response.success) {
+                            $this.closest(".flash-item").remove();
+                        } else {
+
+                        }
+                    },
+                    error: function () {
+                        $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+            function getSlugFromUrl() {
+                var path = window.location.pathname;
+                var segments = path.split("/");
+                return segments[segments.length - 1];
+            }
+            $(document).on("click", ".btn-filter", function (e) {
+                e.preventDefault();
+                $(".nav-item").removeClass("active border-danger");
+                $(this).parent().addClass("active border-danger");
+                var type = $(this).data("type");
+                var slugurl = getSlugFromUrl();
+                $.ajax({
+                    url: "/FilterCategory/Index",
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                        type: type,
+                        slug: slugurl
+
+                    },
+                    success: function (response) {
+                        var productList = $("#productList");
+                        productList.empty();
+                        $.each(response, function (index, item) {
+                            var formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.price);
+                            var formattedSalePrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.sale_price);
+
+                            var productHtml = `
+                               <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                   <div class="flash-item">
+                                       <a href="/products/${item.slug}">
+                                           <img loading="lazy" src="${item.image}" alt="" class="img-fluid">
+                                       </a>
+                                       <div class="flash-text mt-3">
+                                               <p class="m-0 text-truncate" style="max-width: 200px;" title="${item.nameProduct}">
+                                                   ${item.nameProduct}
+                                               </p>
+                                               <div class="price">
+                                                   <span class="text-danger">${formattedPrice}</span>
+                                                   <span class="price-sale">${formattedSalePrice}</span>
+                                               </div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                    <label for>Yêu thích</label>
+                                                </div>
+                                          </div>
+                                          <span class="label-sale position-absolute">
+                                               Giảm ${item.percen_sale}%
+                                           </span>
+                                          <div class="cart" data-product-id="${item.productId}">
+                                              <i class="fa-solid fa-plus"></i>
+                                          </div>
+                                       </div>
+                                   </div>
+                               </div>`;
+                            productList.append(productHtml);
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Lỗi AJAX:", textStatus, errorThrown);
+                        alert("Có lỗi xảy ra khi tải sản phẩm. Vui lòng thử lại.");
+                    },
+                });
+            });
+            $(document).on("click", ".btn-fil-price", function () {
+                var minPrice = $(this).data("min");
+                var maxPrice = $(this).data("max");
+                var slug = getSlugFromUrl();
+                $.ajax({
+                    url: "/FilterCategory/Index",
+                    type: "GET",
+                    data: {
+                        minPrice: minPrice,
+                        maxPrice: maxPrice,
+                        slug: slug
+                    },
+                    success: function (response) {
+                        var productList = $("#productList");
+                        productList.empty();
+                        if (response.length <= 0) {
+                            productList.append('<div class="alert alert-warning text-center">Không có sản phẩm nào phụ hợp!</div>');
+                        }
+                        $.each(response, function (index, item) {
+                            var formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.price);
+
+                            var formattedSalePrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.sale_price);
+                            var productHtml = `
+                                   <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                       <div class="flash-item">
+                                           <a href="/products/${item.slug}">
+                                               <img loading="lazy" src="${item.image}" alt="" class="img-fluid">
+                                           </a>
+                                           <div class="flash-text mt-3">
+                                                   <p class="m-0 text-truncate" style="max-width: 200px;" title="${item.nameProduct}">
+                                                       ${item.nameProduct}
+                                                   </p>
+                                                   <div class="price">
+                                                       <span class="text-danger">${formattedPrice}</span>
+                                                       <span class="price-sale">${formattedSalePrice}</span>
+                                                   </div>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                        <label for>Yêu thích</label>
+                                                    </div>
+                                              </div>
+                                              <span class="label-sale position-absolute">
+                                                   Giảm ${item.percen_sale}%
+                                               </span>
+                                              <div class="cart" data-product-id="${item.productId}">
+                                                  <i class="fa-solid fa-plus"></i>
+                                              </div>
+                                           </div>
+                                       </div>
+                                   </div>`;
+
+                            // Thêm sản phẩm vào danh sách
+                            productList.append(productHtml);
+                        });
+                    },
+                    error: function () {
+                        console.error("Error");
+                    }
+                });
+            });
+            $(document).on("click", ".btn-fil-brand", function () {
+
+                $(".btn-fil-brand span").removeClass("border-danger");
+                $(this).find("span").addClass("border-danger");
+
+                var brand = $(this).data("brand");
+                var slug = getSlugFromUrl();
+                $.ajax({
+                    url: "/FilterCategory/Index",
+                    type: "GET",
+                    data: {
+                        brand: brand,
+                        slug: slug
+                    },
+                    success: function (response) {
+                        var productList = $("#productList");
+                        productList.empty();
+                        if (response.length <= 0) {
+                            productList.append('<div class="alert alert-warning text-center">Không có sản phẩm nào phụ hợp!</div>');
+                        }
+                        $.each(response, function (index, item) {
+                            var formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.price);
+
+                            var formattedSalePrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.sale_price);
+                            var productHtml = `
+                       <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                           <div class="flash-item">
+                               <a href="/products/${item.slug}">
+                                   <img loading="lazy" src="${item.image}" alt="" class="img-fluid">
+                               </a>
+                               <div class="flash-text mt-3">
+                                       <p class="m-0 text-truncate" style="max-width: 200px;" title="${item.nameProduct}">
+                                           ${item.nameProduct}
+                                       </p>
+                                       <div class="price">
+                                           <span class="text-danger">${formattedPrice}</span>
+                                           <span class="price-sale">${formattedSalePrice}</span>
+                                       </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fa-regular fa-heart"></i>
+                                            <label for>Yêu thích</label>
+                                        </div>
+                                  </div>
+                                  <span class="label-sale position-absolute">
+                                       Giảm ${item.percen_sale}%
+                                   </span>
+                                  <div class="cart" data-product-id="${item.productId}">
+                                      <i class="fa-solid fa-plus"></i>
+                                  </div>
+                               </div>
+                           </div>
+                       </div>`;
+
+                            // Thêm sản phẩm vào danh sách
+                            productList.append(productHtml);
+                        });
+                    },
+                    error: function () {
+                        console.error("Error");
+                    }
+                });
+            });
+            $(document).on("click", ".btn-fil-type", function () {
+                $(".btn-fil-type span").removeClass("border-danger");
+                $(this).find("span").addClass("border-danger");
+                var brand = $(this).data("type");
+                var slug = getSlugFromUrl();
+                $.ajax({
+                    url: "/FilterCategory/Index",
+                    type: "GET",
+                    data: {
+                        typeId: brand,
+                        slug: slug
+                    },
+                    success: function (response) {
+                        var productList = $("#productList");
+                        productList.empty();
+                        if (response.length <= 0) {
+                            productList.append('<div class="alert alert-warning text-center">Không có sản phẩm nào phụ hợp!</div>');
+                        }
+                        $.each(response, function (index, item) {
+                            var formattedPrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.price);
+
+                            var formattedSalePrice = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(item.sale_price);
+                            var productHtml = `
+                                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                         <div class="flash-item">
+                                             <a href="/products/${item.slug}">
+                                                 <img loading="lazy" src="${item.image}" alt="" class="img-fluid">
+                                             </a>
+                                             <div class="flash-text mt-3">
+                                                     <p class="m-0 text-truncate" style="max-width: 200px;" title="${item.nameProduct}">
+                                                         ${item.nameProduct}
+                                                     </p>
+                                                     <div class="price">
+                                                         <span class="text-danger">${formattedPrice}</span>
+                                                         <span class="price-sale">${formattedSalePrice}</span>
+                                                     </div>
+                                                      <div class="d-flex align-items-center gap-2">
+                                                          <i class="fa-regular fa-heart"></i>
+                                                          <label for>Yêu thích</label>
+                                                      </div>
+                                                </div>
+                                                <span class="label-sale position-absolute">
+                                                     Giảm ${item.percen_sale}%
+                                                 </span>
+                                                <div class="cart" data-product-id="${item.productId}">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </div>
+                                             </div>
+                                         </div>
+                                     </div>`;
+
+                            // Thêm sản phẩm vào danh sách
+                            productList.append(productHtml);
+                        });
+                    },
+                    error: function () {
+                        console.error("Error");
+                    }
+                });
+            });
+            $('#load-more').click(function () {
+                $('#loading-overlay').removeClass('d-none');
+                $('#load-more').prop('disabled', true);
+                var skip = 4;
+                $.ajax({
+                    url: '@Url.Action("LoadMoreOrders", "LichSuDonHang")',
+                    type: 'GET',
+                    data: { skip: skip },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#loading-overlay').addClass('d-none');
+                            setTimeout(function () {
+                                $('#loading-overlay').addClass('d-none');
+                            }, 2000)
+                            $.each(response.orders, function (index, order) {
+                                // Construct HTML structure for the order item
+                                $('.order-list').append(
+                                    '<a href="/chitiet?orderid=' + order.orderId + '" class="order-item text-decoration-none d-flex align-content-center justify-content-between">' +
+                                    '<div>' +
+                                    '<div>' +
+                                    '<span class="order-id">#' + order.orderId + '</span> - ' +
+                                    '<span class="order-status">' + order.status + '</span>' +
+                                    '<div class="order-address">Địa chỉ giao hàng: ' + (order.address ? order.ward + " ," + order.ward + " ," + order.district : "Không có địa chỉ") + '</div>' +
+                                    '<div class="order-date">Ngày: ' + new Date(order.createdAt).toLocaleDateString("vi-VN") + '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div>' +
+                                    '<span class="order-price">' + order.price.toLocaleString("vi-VN") + '₫</span>' +
+                                    '<div style="width: 130px">' +
+                                    '<button class="btn btn-light btn-sm mt-3 d-block btn-huydonuser" data-orderid="' + order.orderId + '" ' + (order.trangthai === 3 ? 'disabled' : '') + '>' +
+                                    (order.trangthai === 3 ? 'Đã hủy đơn' : 'Hủy đơn') +
+                                    '</button>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</a>'
+                                );
+                            });
+                            skip += 4;
+                        } else {
+                            $('#load-more').hide();
+                        }
+                        $('#load-more').prop('disabled', false);
+                    }
+                });
+            });
+            $(document).on("click", ".btn-gift-add", function (e) {
+                var isDisabled = $(this).find('button').is(':disabled');
+                if (isDisabled) {
+                    return;
+                }
+                var productId = $(this).data('product-id');
+                $.ajax({
+                    url: "/QuaTang/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        productId: productId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success('Nhận quà tăng thành công', 'Thành công', {
+                                timeOut: 1000,
+                            });
+                            $(".countLast").text(response.count);
+                            $(".gift").remove();
+                            const productHtml = `
+                                <div class="p-4 border rounded-4 position-relative mb-3">
+                                    <div class="align-items-lg-center d-flex gap-3">
+                                        <div>
+                                            <img src="${response.item.image}" alt="" class="img-fluid" width="70px">
+                                        </div>
+                                        <div class="pl-2 pl-lg-3 w-100">
+                                            <p class="text-color fw-bold m-0">${response.item.nameProduct}</p>
+                                            <div class="d-flex justify-content-between w-100 mt-2">
+                                                <div class="d-flex">
+                                                    <span>Miễn Phí</span>
+                                                </div>
+                                                <div>
+                                                    <span class="fs-5 fw-bold text-color price-item-cart" data-product-id="${response.item.productId}">
+                                                        ${response.item.price}₫
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-product-id="${response.item.productId}"
+                                            class="text-main position-absolute top-0 start-100 translate-middle bg-danger text-white border-0 delete-cart"
+                                            style="font-size: 13px; border-radius: 50%; width: 24px; height: 24px;">
+                                        X
+                                    </button>
+                                </div>
+                            `;
+                            $('.cartContainer').append(productHtml);
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            $('.wishlist-btn').click(function () {
+                var productId = $(this).data('product-id');
+                $(".wishlist-btn").removeClass('active-heart')
+                $.ajax({
+                    url: "/Admin/Product/addWishList",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        productid: productId,
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            $(this).addClass('active-heart');
+                            $(".notification").addClass("show");
+                            setTimeout(() => {
+                                $(".notification").removeClass('show');
+                            }, 2000);
+                        } else if (response.isWarning) {
+                            $(".notification").css("background-color", "#fff3cd").css("color", "#664d03")
+                                .text(response.message)
+                                .addClass("show");
+                            setTimeout(() => {
+                                $(".notification").removeClass('show');
+                            }, 2000);
+                        } else {
+                            Swal.fire({
+                                text: response.message,
+                                imageUrl: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:80/q:90/plain/https://cellphones.com.vn/media/wysiwyg/chibi2.png', // Icon tùy chỉnh
+                                imageWidth: 46,  // Độ rộng của icon
+                                imageHeight: 80,
+                                width: '400px',
+                                confirmButtonText: 'Đăng nhập',
+                                cancelButtonText: 'Đăng kí',
+                                showCancelButton: true,
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button',  // Thêm lớp CSS tùy chỉnh cho nút xác nhận
+                                    cancelButton: 'custom-cancel-button',
+                                    content: 'custom-text-content'// Thêm lớp CSS tùy chỉnh cho nút hủy (nếu cần)
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "/dangnhap";
+                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    window.location.href = "/dangki";
+                                }
+                            });
+
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            let imageId;
+            $('.product-container').each(function () {
+                const $productContainer = $(this);
+                const $itemColors = $productContainer.find('.item-color');
+
+                // Kiểm tra nếu tồn tại ít nhất một .item-color
+                if ($itemColors.length > 0) {
+                    const $firstItem = $itemColors.first();
+                    $firstItem.addClass('border-danger');
+
+                    // Xử lý sự kiện click trên .item-color
+                    $itemColors.on('click', function () {
+                        imageId = $(this).data('imageid');
+                        console.log(imageId);
+                        console.log($(this));
+
+                        const newImageSrc = $(this).find('img').attr('src');
+                        const $imgDefault = $productContainer.find('.img-default');
+
+                        $imgDefault.fadeOut(200, function () {
+                            $(this).attr('src', newImageSrc).fadeIn(200);
+                        });
+
+                        // Cập nhật giá
+                        const newPrice = $(`input[data-price="${imageId}"]`, $productContainer).val();
+                        const formattedPrice = formatPrice(newPrice);
+                        $('.price-real').text(formattedPrice);
+
+                        $itemColors.removeClass('border-danger');
+                        $(this).addClass('border-danger');
+                    });
+                }
+            });
+
+
+            // Sự kiện click cho nút "Add to Cart"
+            $('.btn-add-to-cart-model').click(function () {
+                const $productContainer = $(this).closest('.product-container');
+                const quantity = $(".quantity-model-cart", $productContainer).val();
+                const productid = $(this).data("product-id");
+                const selectedImageId = $productContainer.find('.border-danger').data('imageid');
+
+                if (!imageId) {
+                    imageId = selectedImageId
+                }
+                $(this).prop('disabled', true); // Disable button
+
+                $.ajax({
+                    url: '/Admin/Product/addToCart',
+                    type: 'POST',
+                    data: {
+                        id: productid,
+                        quantity: quantity,
+                        imageId: imageId // Sử dụng biến imageId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success('Thêm sản phẩm thành công', 'Thành công', { timeOut: 1000 });
+                            $(".countLast").text(response.count);
+                        } else {
+                            toastr.error(response.message, 'Cảnh báo', { timeOut: 1000 });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        toastr.error('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.', 'Lỗi', {
+                            timeOut: 3000,
+                            closeButton: true,
+                            progressBar: true,
+                            escapeHtml: false
+                        });
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function () {
+                        imageId = null;
+                    }
+                });
+            });
+            function formatPrice(price) {
+                return parseInt(price).toLocaleString('en-US') + '₫'; // Định dạng giá
+            }
+
+            $(document).on("click", ".add-to-cart-details", function (e) {
+                e.preventDefault();
+                const $productContainer = $(this).closest('.product-container');
+                var productId = $(this).data('product-id');
+                var quantity = $(".quantity-deltails").val();
+                const $borderDangerElement = $productContainer.find('div.border-danger[data-imageid]');
+                const selectedImageId = $borderDangerElement.data('imageid');
+                $.ajax({
+                    url: "/Admin/Product/addToCart",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: productId,
+                        quantity: quantity,
+                        imageId: selectedImageId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success('Thêm sản phẩm thành công', 'Thành công', {
+                                timeOut: 1000,
+                            });
+                            $(".countLast").text(response.count);
+                        } else {
+                            toastr.error(response.message, 'Cảnh báo', {
+                                timeOut: 1000,
+                            });
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+
+            $('#btn-increase').click(function () {
+                let quantity = parseInt($('#quantity').val());
+                $('#quantity').val(quantity + 1);
+            });
+
+            // Decrease quantity
+            $('#btn-decrease').click(function () {
+                let quantity = parseInt($('#quantity').val());
+                if (quantity > 1) {
+                    $('#quantity').val(quantity - 1);
+                }
+            });
+            $('.img-item').first().addClass('border border-danger');
+            $('.img-item').on('click', function () {
+                $('.img-item').removeClass("border border-danger");
+                $(this).addClass('border border-danger');
+
+                var newSrc = $(this).attr('src');
+                $('#mainImage').attr('src', newSrc);
+
+                $('#mainImage').fadeOut(300, function () {
+                    $(this).attr('src', newSrc).fadeIn(300);
+                });
+            });
+            $('.toggle-btn').on('click', function () {
+                const desCustom = $('.des-custom');
+                desCustom.toggleClass('expanded');
+                $(this).text(desCustom.hasClass('expanded') ? 'Thu gọn' : 'Xem thêm');
+            });
+
+        function getQueryParameter(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(url);
+            return results == null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        var keyword = getQueryParameter("keyword");
+        $('.pagination-button').on('click', function (e) {
+            e.preventDefault();
+
+            var page = $(this).data('page');
+
+            $.ajax({
+                url: '/Search/Index',
+                type: 'GET',
+                data: { page: page, keyword: keyword },
+                success: function (data) {
+                    $('#product-list').html(data);
+                    $('.pagination li').removeClass('active');
+                    $('a[data-page="' + page + '"]').parent().addClass('active');
+
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi tải dữ liệu.");
+                }
+            });
+        });
+     });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var input = document.getElementById('productSearch');
+            var suggestions = document.querySelector('.suggestions');
+            var overlay = document.querySelector('.overlay-layer');
+            var containerMenuSearch = document.querySelector('.container-menuserach');
+            input.addEventListener('input', function () {
+                var inputValue = input.value;
+                $.ajax({
+                    url: '/ApiProduct/getAllProduct',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { keyword: inputValue },
+                    success: function (response) {
+                        if (response.success) {
+                            var html = '';
+                            response.products.forEach(function (product) {
+                                html += `
+                                                                    <a href = "/products/${product.slug}" class="suggestions-item text-decoration-none">
+                                                                        <img alt="${product.nameProduct}" height="50" src="${product.image}" width="50" />
+                                                                        <div class="info">
+                                                                            <div class="name">
+                                                                                ${product.nameProduct}
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="price">
+                                                                                    ${product.price.toLocaleString()}
+                                                                                </span>
+                                                                                ${product.sale_price > 0 ? `<span class="old-price text-muted text-decoration-line-through">${product.sale_price.toLocaleString()} VND</span>` : ''}
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                `;
+                            });
+                            suggestions.innerHTML = html;
+                        } else {
+                            suggestions.innerHTML = '<div>No products found.</div>';
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error occurred: ' + error);
+                        alert('An error occurred while fetching the products.');
+                    }
+                });
+
+                // Toggle display based on input value
+                if (inputValue) {
+                    suggestions.style.display = 'block';
+                    overlay.style.display = 'block';
+                    containerMenuSearch.style.display = 'none';
+                } else {
+                    suggestions.style.display = 'none';
+                    overlay.style.display = 'none';
+                }
+            });
+            overlay.addEventListener('click', function () {
+                suggestions.style.display = 'none'; // Hide suggestions
+                overlay.style.display = 'none';
+                containerMenuSearch.style.display = 'none'; // Hide overlay
+            });
+            input.addEventListener('focus', function () {
+                overlay.style.display = 'block'
+                containerMenuSearch.style.display = 'block'; // Show the container when the input is focused
+            });
+
+
+        });
+    </script>
+    <script>
+        var star = 0;
+        const ratingItems = document.querySelectorAll('.rating-item');
+        const textarea = document.querySelector('.content-danhgia');
+        const id = document.querySelector('.productid-details');
+        const btnDanhGia = document.querySelector('.btn-danhgia');
+        const error = document.querySelector('.error-danhgia');
+
+        ratingItems.forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                for (let i = 0; i <= index; i++) {
+                    ratingItems[i].querySelector('i').classList.add('hover');
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                ratingItems.forEach(item => {
+                    item.querySelector('i').classList.remove('hover');
+                });
+            });
+
+            item.addEventListener('click', () => {
+                ratingItems.forEach(item => item.querySelector('i').classList.remove('active'));
+                for (let i = 0; i <= index; i++) {
+                    ratingItems[i].querySelector('i').classList.add('active');
+                }
+                star = index + 1;
+            });
+        });
+
+        btnDanhGia.addEventListener('click', () => {
+            const content = textarea.value.trim();
+            const productid = id.value.trim();
+            if (content.length < 15) {
+                error.innerHTML = "Nội dung phải có tối thiểu 15 ký tự!";
+            } else {
+                error.innerHTML = "";
+                console.log("Nội dung đánh giá:", content, productid, star);
+                $.ajax({
+                    url: '/DanhGia/Index',
+                    type: 'POST',
+                    data: {
+                        productid: productid, // Pass product ID value here
+                        star: star,
+                        content: content
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Gửi đánh giá thành công!',
+                                text: 'Cảm ơn bạn đã phản hồi',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            })
+                        } else {
+                            Swal.fire({
+                                text: response.message,
+                                imageUrl: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:80/q:90/plain/https://cellphones.com.vn/media/wysiwyg/chibi2.png', // Icon tùy chỉnh
+                                imageWidth: 46,  // Độ rộng của icon
+                                imageHeight: 80,
+                                width: '400px',
+                                confirmButtonText: 'Đăng nhập',
+                                cancelButtonText: 'Đăng kí',
+                                showCancelButton: true,
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button',  // Thêm lớp CSS tùy chỉnh cho nút xác nhận
+                                    cancelButton: 'custom-cancel-button',
+                                    content: 'custom-text-content'// Thêm lớp CSS tùy chỉnh cho nút hủy (nếu cần)
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "/dangnhap";
+                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    window.location.href = "/dangki";
+                                }
+                            });
+                        }
+                        textarea.value = '';
+                        ratingItems.forEach(item => item.querySelector('i').classList.remove('active'));
+                    },
+                    error: function () {
+                        error.innerHTML = "Có lỗi xảy ra khi gửi đánh giá. Vui lòng thử lại!";
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

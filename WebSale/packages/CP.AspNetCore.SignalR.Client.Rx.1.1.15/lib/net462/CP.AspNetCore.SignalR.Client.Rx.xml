@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CP.AspNetCore.SignalR.Client.Rx</name>
+    </assembly>
+    <members>
+        <member name="T:CP.AspNetCore.SignalR.Client.Rx.HubBuilder">
+            <summary>
+            HubBuilder.
+            </summary>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubBuilder.Create(System.Func{Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder,Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder})">
+            <summary>
+            Creates a HubConnection.
+            </summary>
+            <param name="hubConnectionBuilder">The hub connection builder.</param>
+            <returns>A HubConnection.</returns>
+        </member>
+        <member name="T:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins">
+            <summary>
+            HubConnection Mixins.
+            </summary>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.StartObservable(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Starts a connection to the server.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>An Observable Unit.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.StartObservable(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.Threading.CancellationToken)">
+            <summary>
+            Starts a connection to the server.
+            </summary>
+            <param name="connection">The connection.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None" />.</param>
+            <returns>An Observable Unit.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.Start(System.IObservable{Microsoft.AspNetCore.SignalR.Client.HubConnection})">
+            <summary>
+            Starts the specified connection.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>Observable HubConnection.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.Start``1(System.IObservable{``0},Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Starts the specified connection.
+            </summary>
+            <typeparam name="T">The type of the base.</typeparam>
+            <param name="ignore">The ignore.</param>
+            <param name="connection">The connection.</param>
+            <returns>Observable HubConnection.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.Start(System.IObservable{Microsoft.AspNetCore.SignalR.Client.HubConnection},System.Threading.CancellationToken)">
+            <summary>
+            Starts the specified connection.
+            </summary>
+            <param name="connection">The connection.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Observable HubConnection.
+            </returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.Start``1(System.IObservable{``0},Microsoft.AspNetCore.SignalR.Client.HubConnection,System.Threading.CancellationToken)">
+            <summary>
+            Starts the specified connection.
+            </summary>
+            <typeparam name="T">The type of the base.</typeparam>
+            <param name="ignore">The ignore.</param>
+            <param name="connection">The connection.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Observable HubConnection.
+            </returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.StopObservable(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Stops a connection to the server.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>An Observable Unit.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.StopObservable(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.Threading.CancellationToken)">
+            <summary>
+            Stops a connection to the server.
+            </summary>
+            <param name="connection">The connection.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None" />.</param>
+            <returns>An Observable Unit.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.StreamObservable``1(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Invokes a streaming hub method on the server using the specified method name and return type.
+            </summary>
+            <typeparam name="T">The return type of the streaming server method.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None" />.</param>
+            <returns>
+            A <see cref="T:System.IObservable`1" /> that represents the stream.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.HasClosed(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Occurs when the connection is closed. The connection could be closed due to an error or due to either the server or client intentionally
+            closing the connection without error.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>A <see cref="T:System.IObservable`1" />.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.IsReconnecting(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Occurs when the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection"/> starts reconnecting after losing its underlying connection.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>The <see cref="T:System.Exception"/> that occurred will be passed in as the sole argument to this handler.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.HubConnectionMixins.HasReconnected(Microsoft.AspNetCore.SignalR.Client.HubConnection)">
+            <summary>
+            Occurs when the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection"/> successfully reconnects after losing its underlying connection.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>Return value will be the <see cref="T:Microsoft.AspNetCore.SignalR.Client.HubConnection"/>'s new ConnectionId or null if negotiation was skipped.</returns>
+            <exception cref="T:System.ArgumentNullException">connection.</exception>
+        </member>
+        <member name="T:CP.AspNetCore.SignalR.Client.Rx.OnMixins">
+            <summary>
+            On Mixins.
+            </summary>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``1(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T">The type of the parameter of the method that this delegate encapsulates.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``2(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``3(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``4(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <typeparam name="T4">The type of the 4.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3, T4.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``5(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <typeparam name="T4">The type of the 4.</typeparam>
+            <typeparam name="T5">The type of the 5.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3, T4, T5.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``6(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <typeparam name="T4">The type of the 4.</typeparam>
+            <typeparam name="T5">The type of the 5.</typeparam>
+            <typeparam name="T6">The type of the 6.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3, T4, T5, T6.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``7(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <typeparam name="T4">The type of the 4.</typeparam>
+            <typeparam name="T5">The type of the 5.</typeparam>
+            <typeparam name="T6">The type of the 6.</typeparam>
+            <typeparam name="T7">The type of the 7.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3, T4, T5, T6, T7.</returns>
+        </member>
+        <member name="M:CP.AspNetCore.SignalR.Client.Rx.OnMixins.On``8(Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+            <summary>
+            Registers a handler that will be invoked when the hub method with the specified method name is invoked.
+            </summary>
+            <typeparam name="T1">The type of the 1.</typeparam>
+            <typeparam name="T2">The type of the 2.</typeparam>
+            <typeparam name="T3">The type of the 3.</typeparam>
+            <typeparam name="T4">The type of the 4.</typeparam>
+            <typeparam name="T5">The type of the 5.</typeparam>
+            <typeparam name="T6">The type of the 6.</typeparam>
+            <typeparam name="T7">The type of the 7.</typeparam>
+            <typeparam name="T8">The type of the 8.</typeparam>
+            <param name="connection">The connection.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>An Observable of T1, T2, T3, T4, T5, T6, T7, T8.</returns>
+        </member>
+    </members>
+</doc>

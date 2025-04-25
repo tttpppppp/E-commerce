@@ -1,0 +1,61 @@
+﻿@model List<WebSale.Models.getListProduct_Result>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-2">
+    <h2>Danh sách sản phẩm</h2>
+    <a href="/Admin/Product/addProduct" class="btn btn-success mb-3">Thêm sản phẩm</a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Giá giảm</th>
+                            <th>Phần trăm giảm</th>
+                            <th>Số lượng</th>
+                            <th>Mã SKU</th>
+                            <th>Nhãn hàng</th>
+                            <th>Danh mục</th>
+                            <th>Loại</th>
+                            <th>Status</th>
+                            <th>Thông số kỹ thuật</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.nameProduct</td>
+                                <td><img src="@item.image" width="100px" /></td>
+                                <td>@item.price.ToString("#,0")đ</td>
+                                <td>@(item.sale_price?.ToString("#,0") ?? "0")đ</td>
+                                <td>@(item.percen_sale != null ? item.percen_sale : 0)%</td>
+                                <td>@item.quantity</td>
+                                <td>@item.sku</td>
+                                <td>@item.nameBrand</td>
+                                <td>@item.nameCategory</td>
+                                <td>@item.typeName</td>
+                                <td><span style="font-size: 14px" class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">@(item.status == 1 ? "Active" : "UnActive")</span></td>
+                                <td><a class="btn btn-info" href="/Admin/ThongSoKyThuat/Index?id=@item.specificationId">Xem</a></td>
+                                <td class="p-2">
+                                    <a href="/Admin/Product/deleteProduct?id=@item.productId" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" class="btn btn-danger btn-sm">Xóa</a>
+                                    <a href="/Admin/Product/updateProduct?id=@item.productId" class="btn btn-warning mt-2 btn-sm">Sửa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>

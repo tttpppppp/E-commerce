@@ -1,0 +1,724 @@
+﻿@model List<WebSale.Models.ProductViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="login-nav-top">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="/">Trang chủ</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="login.html">Đánh giá tốt nhất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="details my-3">
+    <div class="container bg-white p-4 rounded-3">
+        @foreach (var Model in Model)
+        {
+            <div class="row product-container">
+                <div class="d-flex gap-3">
+                    <h3 class="fw-bold text-color">@Model.nameProduct</h3>
+                    <input type="hidden" value="@Model.productId" class="productid-details" />
+                </div>
+                <div class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-4">
+                    <div class="details-img-lg">
+                        <img src="@Model.image"
+                             class="img-fluid img-default" id="mainImage" />
+                    </div>
+                    <input type="hidden" id="mauSacDefault" value="@Model.idMauSacDefault" />
+                    <div class="details-img-sm d-flex gap-3 mt-4">
+                        @foreach (var item in Model.Image)
+                        {
+                            <img src="@item.image" class="img-item" data-mausac="@item.ImageId" />
+                        }
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-5">
+                    <div class="details-price bg-light p-3 rounded-3 d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                        <h3 class="m-0 text-danger fs-2 fw-bold price-real">
+                            @Model.price.ToString("#,0")₫
+                        </h3>
+                        <span class="details-price-sale text-color text-decoration-line-through mt-3">@(Model.sale_price.ToString("#,0") ?? "0")₫</span>
+                        <div class="sale_label rounded-3 ml-2 py-1 px-2 mb-2 bg-danger text-white">
+                            -<span class="nb_dis">
+                                @Model.percen_sale%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 mt-4">
+                        <span class="fw-bold text-color">Số lượng</span>
+                        <div id="btn-increase" class="bg-white px-3 py-1 rounded-3 text-danger btn-quantity-de">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div id="btn-decrease" class="bg-white px-3 py-1 rounded-3 text-danger btn-quantity-de">
+                            <i class="fa-solid fa-minus"></i>
+                        </div>
+                        <input type="text" id="quantity" value="1"
+                               class="border rounded-3 px-3 py-1 text-center text-color outline-none quantity-deltails"
+                               style="max-width: 80px;">
+                    </div>
+                    <div class="color my-2">
+                        <p class="fw-bold text-color m-0">Màu sắc</p>
+                        @foreach (var itemimg in Model.Image)
+                        {
+                            if (itemimg.Price == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <div class="d-inline-flex gap-2 align-items-center color-border px-2 py-1 rounded-3 mt-2 item-color me-2" data-imageid="@itemimg.ImageId" data-default="@(itemimg.IsDefault ? "1" : "0")">
+                                    <img src="@itemimg.image">
+                                    <span class="text-color fw-bold" style="font-size:14px;">@itemimg.MauSac</span>
+                                </div>
+                                <input type="hidden" value="@itemimg.Price" data-price="@itemimg.ImageId" class="price-change" />
+                            }
+                        }
+                    </div>
+                    <div class="d-flex align-items-center gap-2 my-3">
+                        <a href="checkout.html" class="d-block w-75 text-decoration-none">
+                            <button type="button"
+                                    class="btn d-flex w-100 justify-content-center flex-column align-items-center rounded-4 pt-2 pb-2 position-relative text-white bg-danger">
+                                <span class="text-uppercase fw-bold">
+                                    Mua
+                                    ngay
+                                </span>
+                                <small>
+                                    (Giao tận nơi hoặc lấy tại cửa
+                                    hàng)
+                                </small>
+                            </button>
+                        </a>
+                        <button type="button" class="d-flex justify-content-center flex-column align-items-center rounded-4 p-2 fw-bold position-relative color-border add-to-cart-details" data-product-id="@Model.productId">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <small class="mt-1">Thêm vào giỏ</small>
+                        </button>
+                    </div>
+                    <a href="tel:1900.636.099"
+                       class="btn d-flex w-100 justify-content-center flex-column align-items-center rounded-4 pt-2 pb-2 position-relative text-white bg-primary mb-3">
+                        <span class="text-uppercase fw-bold">
+                            Gọi tư
+                            vấn
+                        </span>
+                        <small>(Chúng tôi luôn bên bạn 24/7)</small>
+                    </a>
+                    <div class="gift p-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://product.hstatic.net/200000823693/product/f1a969685e463386083712e1cc0560_b730a9d5f9884e4d8a895967ae23cee4.jpg"
+                                 alt>
+                            <div class="d-flex flex-column">
+                                <div class="mb-2">
+                                    Đáp ứng giá trị điều kiện,
+                                    lấy ngay <b>
+                                        Cáp dữ liệu một cho ba USB
+                                        sang M + L + C 3.5A 1.2m
+                                    </b>
+                                </div>
+                                <a class="btn-gift btn btn-danger d-inline">
+                                    <i class="fa-solid fa-gift"></i> Nhận
+                                    ngay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
+                    <ul class="list-unstyled mb-3 position-relative product-info mb-3 mt-3 mt-lg-0 mt-md-3 p-2 border rounded-3">
+                        <li class="in_1 fw-bold">
+                            Tình trạng:
+
+                            @if (Model.quantity > 0)
+                            {
+                                <span class="inventory_quantity text-success fw-normal">
+                                    Còn
+                                    hàng
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="inventory_quantity text-danger fw-normal">
+                                    Hết hàng
+                                </span>
+                            }
+
+
+                        </li>
+                        <li class="in_1 fw-bold">
+                            Thương hiệu:
+                            <span class="text-dark fw-normal">@Model.brandName</span>
+                        </li>
+                        @if (Model.masku != null)
+                        {
+                            <li class="in_1 fw-bold">
+                                Mã SKU:
+                                <span id="sku"
+                                      class="text-dark fw-normal">@Model.masku</span>
+                                </li>
+                            }
+                        <li class="in_1 fw-bold">
+                            Loại:
+                            <span id="sku"
+                                  class="text-dark fw-normal">@Model.typeName</span>
+                            </li>
+                        </ul>
+                        <div class="free-gifts p-2 mt-4">
+                            <legend class="d-inline-block pl-3 pr-3 mb-0 bg-light">
+                                <img alt="Code Ưu Đãi"
+                                     src="//theme.hstatic.net/200000823693/1001172883/14/gift.gif?v=978">
+                                Code Ưu Đãi
+                            </legend>
+                            <div class="item pb-2 ">
+                                <span class="d-block">
+                                    <small>
+                                        Nhập mã
+                                        <b>Mew2023</b> để được giảm ngay 120k
+                                        (áp dụng cho
+                                        các đơn hàng trên 500k)
+                                    </small>
+                                </span>
+                                <copy-text class="btn mb-2 mt-1 btn-sm m_copy text-white font-weight-bold pl-2 pr-2 d-inline-block"
+                                           data-text="Mew2023">
+                                    Lưu mã
+                                </copy-text>
+                                <span class="d-block">
+                                    <small>
+                                        Nhập mã
+                                        <b>Mew2023</b> để được giảm ngay 120k
+                                        (áp dụng cho
+                                        các đơn hàng trên 500k)
+                                    </small>
+                                </span>
+                                <copy-text class="btn mb-2 mt-1 btn-sm m_copy text-white font-weight-bold pl-2 pr-2 d-inline-block"
+                                           data-text="Mew2023">
+                                    Lưu mã
+                                </copy-text>
+                                <span class="d-block">
+                                    <small>
+                                        Nhập mã
+                                        <b>Mew2023</b> để được giảm ngay 120k
+                                        (áp dụng cho
+                                        các đơn hàng trên 500k)
+                                    </small>
+                                </span>
+                                <copy-text class="btn mb-2 mt-1 btn-sm m_copy text-white font-weight-bold pl-2 pr-2 d-inline-block"
+                                           data-text="Mew2023">
+                                    Lưu mã
+                                </copy-text>
+                                <span class="d-block">
+                                    <small>
+                                        Nhập mã
+                                        <b>Mew2023</b> để được giảm ngay 120k
+                                        (áp dụng cho
+                                        các đơn hàng trên 500k)
+                                    </small>
+                                </span>
+                                <copy-text class="btn mb-2 mt-1 btn-sm m_copy text-white font-weight-bold pl-2 pr-2 d-inline-block"
+                                           data-text="Mew2023">
+                                    Lưu mã
+                                </copy-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9 col-md-8  des-custom bg-white rounded-3 p-2 mt-3  p-3 my-3">
+                <h3 class="special-content_title d-block w-100 pb-2 mb-2 fw-bold">
+                    Thông
+                    tin chi tiết
+                </h3>
+                <div class="content-wrapper">
+                    @foreach (var Model in Model)
+                    {
+                        @Html.Raw(Model.des)
+                    }
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-center">
+                    <div class="toggle-btn">Xem thêm</div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 my-3">
+                <div class="p-2 rounded-3 bg-white">
+                    <h3 class="d-block w-100 p-2 mb-2 fw-bold text-color" style="font-size:18px">
+                        Thông số kỹ thuật
+                    </h3>
+                    <div class="border rounded-3 small modal-open">
+                        <div class="special-content">
+                            <div class="special-content">
+                                <p class="text-danger m-0 fw-bold p-2" style="font-size : 16px">
+                                    Màn
+                                    hình
+                                </p>
+                                <table border="1" cellpadding="1"
+                                       cellspacing="1"
+                                       class="table table-striped">
+                                    @if (ViewBag.listCauHinh != null)
+                                    {
+                                        var product = ViewBag.listCauHinh;
+                                        <tr>
+                                            <td><strong>Công nghệ màn hình</strong></td>
+                                            <td>@product.ThongSoKyThuat.screenTechnology</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Độ phân giải</strong></td>
+                                            <td>@product.ThongSoKyThuat.screenResolution</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong>Màn hình rộng</strong></td>
+                                            <td>@product.ThongSoKyThuat.screenSize</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong>CPU</strong></td>
+                                            <td>@product.ThongSoKyThuat.cpu</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong>Tần số quét</strong></td>
+                                            <td>@product.ThongSoKyThuat.refreshRate</td>
+                                        </tr>
+
+                                        <!-- Modal for displaying more details -->
+                                        <div class="modal fade" id="chitietcauhinh" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Thông số kỹ thuật</h5> <!-- Updated title -->
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body custom-thongso">
+                                                        <div><strong>Công nghệ màn hình:</strong> @product.ThongSoKyThuat.screenTechnology</div>
+                                                        <div><strong>Độ phân giải:</strong> @product.ThongSoKyThuat.screenResolution</div>
+                                                        <div><strong>Màn hình rộng:</strong> @product.ThongSoKyThuat.screenSize</div>
+                                                        <div><strong>Tần số quét:</strong> @product.ThongSoKyThuat.refreshRate</div>
+                                                        <div><strong>Tính năng màn hình:</strong> @product.ThongSoKyThuat.screenFeatures</div>
+                                                        <div><strong>Camera sau:</strong> @product.ThongSoKyThuat.rearCamera</div>
+                                                        <div><strong>Độ phân giải camera sau:</strong> @product.ThongSoKyThuat.rearCameraResolution</div>
+                                                        <div><strong>Quay video:</strong> @product.ThongSoKyThuat.videoRecording</div>
+                                                        <div><strong>Đèn Flash:</strong> @product.ThongSoKyThuat.flash</div>
+                                                        <div><strong>Tính năng camera sau:</strong> @product.ThongSoKyThuat.rearCameraFeatures</div>
+                                                        <div><strong>Camera trước:</strong> @product.ThongSoKyThuat.frontCamera</div>
+                                                        <div><strong>Độ phân giải camera trước:</strong> @product.ThongSoKyThuat.frontCameraResolution</div>
+                                                        <div><strong>Hệ điều hành:</strong> @product.ThongSoKyThuat.operatingSystem</div>
+                                                        <div><strong>CPU:</strong> @product.ThongSoKyThuat.cpu</div>
+                                                        <div><strong>RAM:</strong> @product.ThongSoKyThuat.ram</div>
+                                                        <div><strong>Bộ nhớ trong:</strong> @product.ThongSoKyThuat.internalStorage</div>
+                                                        <div><strong>Mạng di động:</strong> @product.ThongSoKyThuat.mobileNetwork</div>
+                                                        <div><strong>SIM:</strong> @product.ThongSoKyThuat.sim</div>
+                                                        <div><strong>Wi-Fi:</strong> @product.ThongSoKyThuat.wifi</div>
+                                                        <div><strong>GPS:</strong> @product.ThongSoKyThuat.gps</div>
+                                                        <div><strong>Bluetooth:</strong> @product.ThongSoKyThuat.bluetooth</div>
+                                                        <div><strong>Cổng sạc:</strong> @product.ThongSoKyThuat.chargingPort</div>
+                                                        <div><strong>Cổng tai nghe:</strong> @product.ThongSoKyThuat.headphoneJack</div>
+                                                        <div><strong>Cổng kết nối khác:</strong> @product.ThongSoKyThuat.otherConnections</div>
+                                                        <div><strong>Dung lượng pin:</strong> @product.ThongSoKyThuat.batteryCapacity</div>
+                                                        <div><strong>Công nghệ pin:</strong> @product.ThongSoKyThuat.batteryTechnology</div>
+                                                        <div><strong>Bảo mật nâng cao:</strong> @product.ThongSoKyThuat.advancedSecurity</div>
+                                                        <div><strong>Tính năng đặc biệt:</strong> @product.ThongSoKyThuat.specialFeatures</div>
+                                                        <div><strong>Chống nước:</strong> @product.ThongSoKyThuat.waterResistance</div>
+                                                        <div><strong>Quay video:</strong> @product.ThongSoKyThuat.recording</div>
+                                                        <div><strong>Radio:</strong> @product.ThongSoKyThuat.radio</div>
+                                                        <div><strong>Định dạng phim:</strong> @product.ThongSoKyThuat.movieFormats</div>
+                                                        <div><strong>Định dạng nhạc:</strong> @product.ThongSoKyThuat.musicFormats</div>
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    else
+                                    {
+                                        <p>Đang cập nhật</p>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div title="Xem thêm"
+                         class="view_mores box_shadow rounded-3 d-block py-2 px-3 mt-3 d-block text-center  text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#chitietcauhinh" style="cursor:pointer">
+                        Xem chi tiết cấu hình
+                    </div>
+                    <div class="modal fade" id="chitietcauhinh" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-md-8 col-lg-9 p-0">
+                <div class="rounded-3 bg-white py-3 px-2 p-lg-3 mb-3">
+                    <h3 class="text-left d-block w-100 mb-3 text-color fs-5 fw-bold">
+                        Đánh
+                        giá sản phẩm
+                    </h3>
+
+                    @*<p class="alert alert-warning mb-0">
+            Vui lòng cài đặt app đánh giá sản phẩm để sử
+            dụng tính năng này.
+        </p>*@
+                    <div class="my-4">
+                        <p class="text-color fw-bold">Đánh giá & nhận xét @ViewBag.title</p>
+                        <div class="row mt-3">
+                            <div class="col-md-3 text-center">
+                                <h1 class="mb-0">@ViewBag.AverageRating/5</h1>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span href="#" class="rating-text">@ViewBag.TotalReviews  đánh giá</span>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="vr"></div>
+                            </div>
+                            <div class="col-md-8">
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    var starRating = 5 - i;
+                                    var ratingCount = ViewBag.RatingCounts[4 - i];
+                                    var percentage = (double)ratingCount / ViewBag.TotalReviews * 100;
+
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="rating-stars me-2">
+                                            <i class="fas fa-star"></i> @starRating
+                                        </div>
+                                        <div class="rating-bar flex-grow-1 me-2">
+                                            <div class="rating-bar-fill" style="width: @percentage%"></div>
+                                        </div>
+                                        <div class="rating-text">@ratingCount đánh giá</div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="has-text-centered my-2 subtitle is-6">Bạn đánh giá sao về sản phẩm này?</p>
+                        <button class="button has-text-white button__review" data-bs-toggle="modal" data-bs-target="#danhgia">
+                            Đánh giá ngay
+                        </button>
+                        @foreach (var item in ViewBag.listReview)
+                        {
+                            <div class="comment-container d-flex mt-3">
+                                <div class="profile-pic"><div class="profile-pic">
+                                        @if (!string.IsNullOrEmpty(item.User.name) && item.User.name.Length > 0)
+                                        {
+                                            @item.User.name.Substring(0, 1)
+                                        }
+                                        else
+                                        {
+                                            <span>M</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="username">@(@item.User.firstName + " " + @item.User.name)</div>
+                                        <div class="ms-2 timestamp"><i class="far fa-clock"></i> 9/11/2024 10:40</div>
+                                    </div>
+                                    <div class="comment-text mt-2">
+                                        <div class="stars mt-2 d-flex justify-content-lg-start mb-2">
+                                            @{
+                                                for (int i = 1; i <= item.star; i++)
+                                                {
+                                                    <i class="fas fa-star"></i>
+                                                }
+                                            }
+                                        </div>
+                                        <p class="d-flex justify-content-lg-start">@item.content</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- Modal -->
+                        <div class="modal fade" id="danhgia" tabindex="-1" aria-labelledby="danhgia" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold text-color" id="exampleModalLabel">Đánh giá & nhận xét</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="d-flex align-items-center gap-2 ">
+                                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:100:100/q:90/plain/https://cellphones.com.vn/media/wysiwyg/cps-ant.png" />
+                                            <span class="fw-bold text-color">@ViewBag.title</span>
+                                        </div>
+                                        <p class="fw-bold d-flex justify-content-md-start mt-2">Đánh giá chung</p>
+                                        <div class="rating-container">
+                                            <div class="rating-item">
+                                                <i class="fas fa-star active"></i>
+                                                <span>Rất Tệ</span>
+                                            </div>
+                                            <div class="rating-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>Tệ</span>
+                                            </div>
+                                            <div class="rating-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>Bình thường</span>
+                                            </div>
+                                            <div class="rating-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>Tốt</span>
+                                            </div>
+                                            <div class="rating-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>Tuyệt vời</span>
+                                            </div>
+                                        </div>
+                                        <span class="error-danhgia text-main mt-2"></span>
+                                        <textarea placeholder="Xin mời chia sẻ một số cảm nhận về sản phẩm (nhập tối thiểu 15 kí tự)" class="textarea content-danhgia"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="button modal__button has-text-white w-100 btn-danhgia">
+                                            GỬI
+                                            ĐÁNH GIÁ
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container bg-white p-3 rounded-3">
+                    <div class="header">
+                        <h2>
+                            Sản phẩm cùng loại
+                        </h2>
+                        <a href="#">
+                            Xem tất cả
+                        </a>
+                    </div>
+                    <div class="product-cungloai">
+                        @if (ViewBag.listspcungloai.Count > 0)
+                        {
+                            foreach (var item in ViewBag.listspcungloai)
+                            {
+                                <a href="/products/@item.slug" class="product-item d-flex align-items-center gap-2 text-decoration-none">
+                                    <img alt="Apple MacBook Pro 13 Touch Bar M1 16GB" height="150" src="@item.image" width="200" />
+                                    <div class="">
+                                        <h3 class="text-color">
+                                            @item.nameProduct
+                                        </h3>
+                                        <div class="price">
+                                            36,290,000đ
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <p>Không có sản phẩm nào!</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="p-2 rounded-3 blog_pr bg-white">
+                    <h3 class="special-content_title fw-bold w-100 p-2 mb-2">
+                        <a class=" text-decoration-none text-color position-relative" href="" title="Có thể bạn quan tâm">
+                            Có thể bạn quan tâm
+                        </a>
+                    </h3>
+                    <div class="b_blog">
+                        <article class="mb-3 row">
+                            <div class="col-4 col-lg-3 pe-0 mt-2">
+                                <img src="//file.hstatic.net/200000823693/article/thiet_ke_chua_co_ten_1ea73286c9624ce0bd77c5b3327f5cda_medium.jpg" class="rounded-3 img-fluid">
+                            </div>
+                            <div class="blogs-rights col-8 col-lg-9">
+                                <a href="" class="text-decoration-none text-color">Samsung sẽ không sử dụng cảm biến camera GN3 cho Galaxy S25/S25+</a>
+                            </div>
+                        </article>
+                        <article class="mb-3 row">
+                            <div class="col-4 col-lg-3 pe-0 mt-2">
+                                <img src="//file.hstatic.net/200000823693/article/thiet_ke_chua_co_ten_1ea73286c9624ce0bd77c5b3327f5cda_medium.jpg" class="rounded-3 img-fluid">
+                            </div>
+                            <div class="blogs-rights col-8 col-lg-9">
+                                <a href="" class="text-decoration-none text-color">Samsung sẽ không sử dụng cảm biến camera GN3 cho Galaxy S25/S25+</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="bg-white px-2 py-3 mt-3 rounded-3">
+                <h3 class="fw-bold text-color fs-5">Sản phẩm đã xem</h3>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="flash-list d-flex align-items-center flex-wrap">
+                            @foreach (var item in ViewBag.recentlyViewedProducts)
+                            {
+                                <div class="flash-item">
+                                    <a href="/products/@item.slug">
+                                        ">
+                                        <img loading="lazy"
+                                             src="@item.image"
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="flash-text mt-3">
+                                        <p class="m-0 text-truncate" style="max-width: 200px; overflow: hidden;" title="@item.nameProduct">
+                                            @item.nameProduct
+                                        </p>
+
+                                        <div class="price">
+                                            <span class="text-danger">@(item.price.ToString("#,0"))₫</span>
+                                            <span class="price-sale">
+                                                @(item.price.ToString("#,0"))₫
+                                            </span>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid  fa-heart wishlist-btn" data-product-id="@item.productId"></i>
+                                            <label>Yêu thích</label>
+                                        </div>
+                                    </div>
+                                    <span class="label-sale position-absolute">
+                                        Giảm @item.percen_sale%
+                                    </span>
+                                    @if (item.Image != null && item.Image.Count > 0)
+                                    {
+                                        @*<div class="cart2 cart-static" data-bs-target="#model-@item.productId" data-bs-toggle="modal">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>*@
+
+                                        <!-- Modal -->
+                                        <div class="modal fade custom-modell" id="model-@item.productId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content rounded-4">
+                                                    <div class="modal-header p-0 border-0">
+                                                        <button type="button" class="btn-close btn-cl" data-bs-dismiss="modal" aria-label="Close">
+                                                            <div class="close fs-5 text-white">
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="row">
+                                                                    <div class="col-4 col-lg-12">
+                                                                        <img src="@item.image" alt="" class="img-fluid img-default">
+                                                                    </div>
+                                                                    <div class="col-8 col-lg-12 d-lg-none">
+                                                                        <div class="product-name fw-bold me-3">
+                                                                            @item.nameProduct
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="d-none d-lg-block product-name fw-bold mb-2 me-3 text-color fs-4">@item.nameProduct</div>
+                                                                <div class="color">
+                                                                    <p class="fw-bold text-color m-0">Màu sắc</p>
+                                                                    <div class="d-flex gap-2 align-items-center flex-wrap">
+                                                                        @foreach (var itemimg in item.Image)
+
+                                                                        {
+
+                                                                            <div class="d-inline-flex gap-2 align-items-center color-border p-1 pe-2 rounded-3 item-color" data-imageid="@itemimg.ImageId">
+                                                                                <img src="@itemimg.image" alt="Image of product in color @itemimg.MauSac" data-imagechange="@itemimg.ImageId" />
+                                                                                <p class="text-danger fw-bold">@itemimg.MauSac</p>
+                                                                            </div>
+                                                                            <input type="hidden" value="@itemimg.Price" data-price="@itemimg.ImageId" class="price-change" />
+                                                                        }
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="details-price p-lg-3 p-0 rounded-3 d-flex align-items-center gap-lg-3 gap-2 mt-3 text-lg-end">
+                                                                    <h3 class="m-0 text-danger fs-2 fw-bold price-real">
+                                                                        @(item.price.ToString("#,0"))₫
+                                                                    </h3>
+                                                                    <span class="details-price-sale text-color text-decoration-line-through mt-3"> @(item.price.ToString("#,0"))₫</span>
+                                                                    <div class="sale_label rounded-3 ml-2 py-1 px-lg-2  mb-2 bg-danger text-white">
+                                                                        -<span class="nb_dis">
+                                                                            @item.percen_sale
+                                                                        </span>%
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div class="d-flex align-items-center gap-3 mt-4">
+                                                                        <button class="bg-white px-3 py-1 border rounded-5 text-danger">
+                                                                            <i class="fa-solid fa-plus"></i>
+                                                                        </button>
+                                                                        <input type="text" value="1"
+                                                                               class="text-center text-color outline-none border-0 quantity-model-cart"
+                                                                               style="max-width: 10px;">
+                                                                        <button class="bg-white px-3 py-1 border rounded-5 text-danger">
+                                                                            <i class="fa-solid fa-minus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <button type="button"
+                                                                            class="btn w-50 rounded-4 text-white bg-danger mt-4">
+                                                                        <span class="text-uppercase fw-bold btn-add-to-cart-model" data-product-id="@item.productId">
+                                                                            Thêm vào giỏ
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="rte mt-4">
+                                                                    <div class="">
+                                                                        @Html.Raw(item.des)
+                                                                    </div>
+                                                                    <a href="/products/@item.slug" class="d-block text-main fw-bold mt-4 text-decoration-none">Chi tiết sản phẩm</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @*<div class="cart cart-static" data-product-id="@item.productId">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>*@
+                                    }
+                                </div>
+                            }
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

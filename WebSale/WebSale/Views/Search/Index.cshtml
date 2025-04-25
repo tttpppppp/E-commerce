@@ -1,0 +1,38 @@
+﻿@model List<WebSale.Models.Product>
+@{
+    ViewBag.Title = "Tìm kiếm sản phẩm";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4 bg-white container my-4 rounded-3">
+    <p class="text-center" style="color: #707070">
+        Tìm thấy<strong> @ViewBag.Count </strong>kết quả cho từ khóa <strong>"@ViewBag.Keyword"</strong>
+    </p>
+    <div class="row">
+        @if (ViewBag.warning == null)
+        {
+            <div id="product-list">
+                @Html.Partial("_ProductList", Model)
+            </div>
+        }
+        else
+        {
+            <div class="text-center">
+                <img src="~/uploads/searchem.jpg" alt="No results" />
+                <p class="fw-bold text-color">Không có kết quả bạn cần tìm</p>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination -->
+    <ul class="pagination d-flex align-items-center justify-content-center">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="mt-2 me-2 search-page px-3 py-1 rounded border pagination-button" data-page="@i">
+                <a class="text-color text-decoration-none" href="#">@i</a>
+            </li>
+        }
+    </ul>
+
+</div>
+

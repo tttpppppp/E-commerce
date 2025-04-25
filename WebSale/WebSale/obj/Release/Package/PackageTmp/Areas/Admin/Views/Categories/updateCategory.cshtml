@@ -1,0 +1,57 @@
+﻿@model WebSale.Models.Category
+
+@{
+    ViewBag.Title = "Cập nhật danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@using (Html.BeginForm("updatecategory", "Categories",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal p-2">
+    <h4>Sửa danh mục</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.categoryId)
+
+    <div class="form-group">
+        <label class="col-md-2">Tên danh mục</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nameCategory, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nameCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Slug</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.slug, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.slug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-10 my-4">
+        <img src="@Model.imageCategory" width="100px" />
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Hình ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="file" />
+            @Html.ValidationMessageFor(model => model.imageCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Trạng thái</label>
+            <select id="status" name="status" class="form-control">
+                <option value="1" @(Model.status == 1 ? "selected" : "")>Active</option>
+                <option value="0" @(Model.status == 0 ? "selected" : "")>None-Active</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cập nhật danh mục" class="btn btn-warning" />
+            <a href="/Admin/Categories/Index" class="btn btn-success">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="login-nav-top mt-5 mt-lg-0">
+    <div class="container">
+        <ul class="mt-3 mt-lg-0">
+            <li>
+                <a href="index.html">Trang chủ</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="login.html">Đăng nhập</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="form-both">
+    <div class="container bg-white p-4 rounded-2 mb-3">
+        <div class="row">
+            <div class="col-lg-8 col-12 mb-3">
+                <h3>Đăng nhập</h3>
+                <div class="login">
+                    <form>
+                        <div class="login-form-control">
+                            <p class="text-danger mb-2 error-login"></p>
+                            <span class="error-email text-danger"></span>
+                            <input type="text" class="rounded-2 mb-2 email-login" placeholder="Nhập email" name="email" value="@ViewBag.Email">
+                            <span class="error-password  text-danger"></span>
+                            <input type="password" class="rounded-2 password-login" placeholder="Nhập mật khẩu" name="password" value="@ViewBag.password">
+
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <button class="btn-login btn btn-danger dangnhap">Đăng nhập</button>
+                            <a href="/quenmatkhau" class="text-decoration-none text-color fw-bold">Quên mật khẩu</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <h3>Đăng ký</h3>
+                <p class="p-3 border border-dark rounded-3">Tạo tài khoản để quản lý đơn hàng, và các thông tin thanh toán, gửi hàng một cách đơn giản hơn.</p>
+                <a href="/dangki" class="btn btn-danger d-block">Tạo tài khoản</a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,354 @@
+﻿@model List<WebSale.Models.ProductViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var categories = new WebSale.Models.WebBanHangASPEntities3().Categories.Take(8).ToList();
+}
+<div class="login-nav-top mt-5 mt-lg-0">
+    <div class="container">
+        <ul class="mt-3 mt-lg-0">
+            <li>
+                <a href="index.html">Trang chủ</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="login.html">Điện thoại Iphone</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<section class="mb-4">
+    <div class="container bg-white p-3 mt-4 rounded-3">
+        <div class="d-flex gap-3">
+            <img src="https://file.hstatic.net/200000823693/file/banner_collec_1_110caff53e3c4432b2fb9ee40ed28576.jpg"
+                 alt="" class="rounded-3" width="630px">
+            <img src="https://file.hstatic.net/200000823693/file/banner_collec_2_692de9cbef1f43c085ac86cb21f53945.jpg"
+                 alt="" class="rounded-3" width="630px">
+        </div>
+        <div class="bg-main mt-2 aside-content rounded-3">
+            <ul class="nav navbar-pills p-2">
+                @foreach (var item in categories)
+                {
+                    <li class="nav-item position-relative ">
+                        <a title="Điện thoại" class="nav-link fw-bold text-white"
+                           href="/category/@item.slug">@item.nameCategory</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="m-0 pt-2 pb-2 fw-bold text-main fs-5">Lọc giá</div>
+                <div class="">
+                    <ul class="list-unstyled m-0 d-flex gap-3 flex-column">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price1" name="price" data-min="0" data-max="100000">
+                                <label class="form-check-label" for="price1">
+                                    Dưới 100.000đ
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price2" name="price" data-min="100000" data-max="200000">
+                                <label class="form-check-label" for="price2">
+                                    100.000đ - 200.000đ
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price3" name="price" data-min="200000" data-max="500000">
+                                <label class="form-check-label" for="price3">
+                                    200.000đ - 500.000đ
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price4" name="price" data-min="500000" data-max="1000000">
+                                <label class="form-check-label" for="price4">
+                                    500.000đ - 1.000.000đ
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price5" name="price" data-min="1000000" data-max="2000000">
+                                <label class="form-check-label" for="price5">
+                                    1.000.000đ - 2.000.000đ
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input btn-fil-price" type="radio" id="price6" name="price" data-min="2000000" data-max="">
+                                <label class="form-check-label" for="price6">
+                                    Trên 2.000.000đ
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <aside class="aside-item filter-vendor mb-3 col-12 col-sm-4 col-lg-12">
+                    <div class="m-0 pt-2 pb-2 fw-bold fs-5 text-main">Thương hiệu</div>
+                    <ul class="filter-vendor filter-grid list-unstyled m-0 pr-1">
+                        <li class="filter-item filter-item--check-box  ">
+                            @foreach (var item in ViewBag.Brands)
+                            {
+                                <label class="d-flex align-items-baseline mt-2 cursor-pointer btn-fil-brand" data-brand="@item.idBrand">
+                                    <span class="fa2 px-2 py-1 rounded-3 border">@item.brandName</span>
+                                </label>
+                            }
+                        </li>
+                    </ul>
+                </aside>
+                <aside class="aside-item filter-vendor mb-3 col-12 col-sm-4 col-lg-12">
+                    <div class="m-0 pt-2 pb-2 fw-bold fs-5 text-main">Loại</div>
+                    <ul class="filter-vendor filter-grid list-unstyled m-0 pr-1">
+                        <li class="filter-item filter-item--check-box  ">
+                            @foreach (var item in ViewBag.Types)
+                            {
+                                <label class="d-flex align-items-baseline mt-2 btn-fil-type" data-type="@item.idType">
+                                    <span class="fa2 px-2 py-1 rounded-3 border">@item.typeName</span>
+                                </label>
+                            }
+                        </li>
+                    </ul>
+                </aside>
+                <a class="h2 title-head big text-uppercase d-inline-block mb-2 px-3 py-2 box_shadow position-relative text-decoration-none">
+                    24h Công nghệ
+                </a>
+                <div class="">
+                    <div class="p-2 rounded-3 blog_pr bg-white">
+                        <h3 class="special-content_title fw-bold w-100 p-2 mb-2">
+                            <a class=" text-decoration-none text-color position-relative" href="" title="Có thể bạn quan tâm">
+                                Có thể bạn quan tâm
+                            </a>
+                        </h3>
+                        <div class="b_blog">
+                            <article class="mb-3 row">
+                                <div class="col-4 col-lg-3 pe-0 mt-2">
+                                    <img src="//file.hstatic.net/200000823693/article/thiet_ke_chua_co_ten_1ea73286c9624ce0bd77c5b3327f5cda_medium.jpg" class="rounded-3 img-fluid">
+                                </div>
+                                <div class="blogs-rights col-8 col-lg-9">
+                                    <a href="" class="text-decoration-none text-color">Samsung sẽ không sử dụng cảm biến camera GN3 cho Galaxy S25/S25+</a>
+                                </div>
+                            </article>
+                            <article class="mb-3 row">
+                                <div class="col-4 col-lg-3 pe-0 mt-2">
+                                    <img src="//file.hstatic.net/200000823693/article/thiet_ke_chua_co_ten_1ea73286c9624ce0bd77c5b3327f5cda_medium.jpg" class="rounded-3 img-fluid">
+                                </div>
+                                <div class="blogs-rights col-8 col-lg-9">
+                                    <a href="" class="text-decoration-none text-color">Samsung sẽ không sử dụng cảm biến camera GN3 cho Galaxy S25/S25+</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="d-flex align-items-center gap-2 border-bottom pb-2">
+                    <p class="m-0 mt-2 fw-bold">Sắp xếp theo:</p>
+                    <div class="sortPagiBar mt-2">
+                        <ul class="nav navbar-pills gap-3">
+                            <li class="nav-item border border-danger rounded-3 active">
+                                <a class="nav-link btn-filter p-2 text-black" href="" data-type="default">Mặc định</a>
+                            </li>
+                            <li class="nav-item border  rounded-3">
+                                <a class="nav-link btn-filter p-2 text-black btn-increase" href="" data-type="asc">Giá tăng dần</a>
+                            </li>
+                            <li class="nav-item border  rounded-3">
+                                <a class="nav-link btn-filter p-2 text-black btn-decrease" href="" data-type="desc">Giá giảm dần</a>
+                            </li>
+                            <li class="nav-item border  rounded-3">
+                                <a class="nav-link btn-filter p-2 text-black" href="" data-type="news">Mới nhất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<form action="/category/@ViewBag.slug" method="post" class="mb-3">
+                    <input type="hidden" value="@ViewBag.slug" name="slug" />
+                    <div class="d-flex align-items-center gap-3 mt-2">
+                        <select name="type" class="form-control">
+                            <option value="">Sắp xếp</option>
+                            <option value="asc" @(ViewBag.type == "asc" ? "selected" : "")>Tăng dần</option>
+                            <option value="desc" @(ViewBag.type == "desc" ? "selected" : "")>Giảm dần</option>
+                            <option value="news" @(ViewBag.type == "news" ? "selected" : "")>Mới nhất</option>
+                        </select>
+                        <select name="minPrice" class="form-control">
+                            <option value="">Giá từ</option>
+                            <option value="100000">100.000đ</option>
+                            <option value="500000">500.000đ</option>
+                            <option value="1000000">1.000.000đ</option>
+                        </select>-->
+
+                        <!-- Giá đến -->
+                        <!--<select name="maxPrice" class="form-control">
+                            <option value="">Giá đến</option>
+                            <option value="500000">500.000đ</option>
+                            <option value="1000000">1.000.000đ</option>
+                            <option value="2000000">2.000.000đ</option>
+                        </select>
+                        <select name="brand" class="form-control">
+                            <option value="">Thương hiệu</option>
+                            @foreach (var brand in ViewBag.Brands)
+                            {
+                                <option value="@brand.idBrand">@brand.brandName</option>
+                            }
+                        </select>
+                        <select name="typeId" class="form-control">
+                            <option value="">Loại sản phẩm</option>
+                            @foreach (var type in ViewBag.Types)
+                            {
+                                <option value="@type.idType">@type.typeName</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-primary">Tìm</button>
+                    </div>
+                </form>-->
+
+                <div id="productList" class="row">
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                <div class="flash-item">
+                                    <a href="/products/@item.slug">
+                                        ">
+                                        <img loading="lazy"
+                                             src="@item.image"
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="flash-text mt-3">
+                                        <p class="m-0 text-truncate" style="max-width: 200px; overflow: hidden;" title="@item.nameProduct">
+                                            @item.nameProduct
+                                        </p>
+
+                                        <div class="price">
+                                            <span class="text-danger">@(item.price.ToString("#,0"))₫</span>
+                                            <span class="price-sale">
+                                                @(item.price.ToString("#,0"))₫
+                                            </span>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid  fa-heart wishlist-btn" data-product-id="@item.productId"></i>
+                                            <label>Yêu thích</label>
+                                        </div>
+                                    </div>
+                                    <span class="label-sale position-absolute">
+                                        Giảm @item.percen_sale%
+                                    </span>
+                                    @if (item.Image != null && item.Image.Count > 0)
+                                    {
+                                        <div class="cart2 cart-static" data-bs-target="#model-@item.productId" data-bs-toggle="modal">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade custom-modell" id="model-@item.productId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content rounded-4">
+                                                    <div class="modal-header p-0 border-0">
+                                                        <button type="button" class="btn-close btn-cl" data-bs-dismiss="modal" aria-label="Close">
+                                                            <div class="close fs-5 text-white">
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="row">
+                                                                    <div class="col-4 col-lg-12">
+                                                                        <img src="@item.image" alt="" class="img-fluid img-default">
+                                                                    </div>
+                                                                    <div class="col-8 col-lg-12 d-lg-none">
+                                                                        <div class="product-name fw-bold me-3">
+                                                                            @item.nameProduct
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="d-none d-lg-block product-name fw-bold mb-2 me-3 text-color fs-4">@item.nameProduct</div>
+                                                                <div class="color">
+                                                                    <p class="fw-bold text-color m-0">Màu sắc</p>
+                                                                    <div class="d-flex gap-2 align-items-center flex-wrap">
+                                                                        @foreach (var itemimg in item.Image)
+
+                                                                        {
+
+                                                                            <div class="d-inline-flex gap-2 align-items-center color-border p-1 pe-2 rounded-3 item-color" data-imageid="@itemimg.ImageId">
+                                                                                <img src="@itemimg.image" alt="Image of product in color @itemimg.MauSac" data-imagechange="@itemimg.ImageId" />
+                                                                                <p class="text-danger fw-bold">@itemimg.MauSac</p>
+                                                                            </div>
+                                                                            <input type="hidden" value="@itemimg.Price" data-price="@itemimg.ImageId" class="price-change" />
+                                                                        }
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="details-price p-lg-3 p-0 rounded-3 d-flex align-items-center gap-lg-3 gap-2 mt-3 text-lg-end">
+                                                                    <h3 class="m-0 text-danger fs-2 fw-bold price-real">
+                                                                        @(item.price.ToString("#,0"))₫
+                                                                    </h3>
+                                                                    <span class="details-price-sale text-color text-decoration-line-through mt-3"> @(item.price.ToString("#,0"))₫</span>
+                                                                    <div class="sale_label rounded-3 ml-2 py-1 px-lg-2  mb-2 bg-danger text-white">
+                                                                        -<span class="nb_dis">
+                                                                            @item.percen_sale
+                                                                        </span>%
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div class="d-flex align-items-center gap-3 mt-4">
+                                                                        <button class="bg-white px-3 py-1 border rounded-5 text-danger">
+                                                                            <i class="fa-solid fa-plus"></i>
+                                                                        </button>
+                                                                        <input type="text" value="1"
+                                                                               class="text-center text-color outline-none border-0 quantity-model-cart"
+                                                                               style="max-width: 10px;">
+                                                                        <button class="bg-white px-3 py-1 border rounded-5 text-danger">
+                                                                            <i class="fa-solid fa-minus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <button type="button"
+                                                                            class="btn w-50 rounded-4 text-white bg-danger mt-4">
+                                                                        <span class="text-uppercase fw-bold btn-add-to-cart-model" data-product-id="@item.productId">
+                                                                            Thêm vào giỏ
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="rte mt-4">
+                                                                    <div class="">
+                                                                        @Html.Raw(item.des)
+                                                                    </div>
+                                                                    <a href="/products/@item.slug" class="d-block text-main fw-bold mt-4 text-decoration-none">Chi tiết sản phẩm</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="cart cart-static" data-product-id="@item.productId">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning text-center">Đang cập nhật</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

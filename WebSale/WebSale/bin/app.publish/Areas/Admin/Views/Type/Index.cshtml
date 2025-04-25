@@ -1,0 +1,42 @@
+﻿@model List<WebSale.Models.Type>
+@{
+    ViewBag.Title = "Danh sách loại";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-2">
+    <a href="/Admin/Type/addType" class="btn btn-success mb-3">Thêm Loại</a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách loại</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên nhãn hàng</th>
+                            <th>Trạng thái</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.typeName</td>
+                                <td><span style="font-size: 14px" class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">@(item.status == 1 ? "Active" : "UnActive")</span></td>
+                                <td>
+                                    <a href="/Admin/Type/deleteType?id=@item.typeId" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" class="btn btn-danger btn-sm">Xóa</a>
+                                    <a href="/Admin/Type/updateType?id=@item.typeId" class="btn btn-warning btn-sm">Sửa</a>
+                       
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

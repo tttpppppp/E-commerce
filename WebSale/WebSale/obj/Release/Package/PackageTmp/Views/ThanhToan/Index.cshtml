@@ -1,0 +1,239 @@
+﻿@model List<WebSale.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Mew Mobile - Thanh toán đơn hàng</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="~/assets/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous" />
+    <link rel="shortcut icon"
+          href="https://file.hstatic.net/200000823693/file/favicon_57c734b04e1e4e918b68e996bf90399c.png"
+          type="image/x-icon">
+    <link rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+          integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+          integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SweetAlert2 (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="row border-top flex-column-reverse flex-lg-row min-vh-100">
+                <div class="col-lg-6 col-12 p-5 border-end">
+                    <div class="main-header">
+                        <a href="/" class="logo text-decoration-none text-color">
+                            <h3>Mew Mobile</h3>
+                        </a>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/cart" class="text-decoration-none">Giỏ hàng</a>
+                            </li>
+
+                            <li class="breadcrumb-item breadcrumb-item-current">
+                                Thông tin giao hàng
+                            </li>
+                            <li class="breadcrumb-item ">
+                                Phương thức thanh toán
+                            </li>
+                        </ul>
+                        <p class="section-content-text">
+                            @if (Session["user"] != null)
+                            {
+                                <span>@((Session["user"] as dynamic)?.FirstName ?? "Guest") (@((Session["user"] as dynamic)?.Email ?? "Guest"))</span>
+                                <a href="" class="text-decoration-none mx-2" style="color: #338dbc ; font-size : 14px">Đăng xuất</a>
+                            }
+                            else
+                            {
+                                <span style="font-size : 14px"> Bạn đã có tài khoản?</span>
+                                <a href="/dangnhap" class="text-decoration-none" style="color: #338dbc ; font-size : 14px">Đăng nhập</a>
+                            }
+                        </p>
+                        <h5 class="section-title">Thông tin giao hàng</h5>
+                    </div>
+                    <div class="main-content">
+                        <form>
+                            <p class="text-danger error-checkout"></p>
+                            <div class="mb-3">
+                                <input type="text" class="form-control p-2 fullname-ship" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Họ và tên" name="fullName">
+                            </div>
+                            <div class="mb-3 d-flex gap-2">
+                                <input type="text" class="form-control p-2 email-ship" id="exampleInput" placeholder="Email" name="email">
+                                <input type="text" class="form-control p-2 w-75 phone-ship" id="exampleInputPassword2" placeholder="Số Điện Thoại" name="phoneNumber">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control p-2 address-ship" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Địa Chỉ" name="Address">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mt-3">
+                                <a href="/cart" class="text-decoration-none">Giỏ hàng</a>
+                            </div>
+                            <div class="d-flex flex-column gap-2 mt-3"
+                                 <span class="fw-bold">Thanh toán trực tiếp</span>
+                                 <button type="button" class="btn btn-light w-50 btn-checkoutt text-white d-flex align-items-center justify-content-center gap-2" style="background: #338dbc ; font-size: 14px">
+                                     <img src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=6" width="25px" />
+                                     <span class="">Thanh toán khi giao hàng (COD)</span>
+                                 </button>
+                                <span>Thanh toán qua ngân hàng</span>
+                                <button type="button" class="btn btn-light w-50 btn-checkoutt text-white d-flex align-items-center justify-content-center gap-2" style="background: #d82d8b ; font-size: 14px">
+                                    <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6" width="25px" />
+                                    <span class="">Thanh Toán qua MOMO</span>
+                                  
+                                </button>
+                            <button type="button" class="btn btn-light w-50 btn-checkoutt text-white d-flex align-items-center justify-content-center gap-2" style="background: #005baa; font-size: 14px">
+                                    <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=6" width="25px" />
+                                    <span class="">Thanh Toán qua VNPAY</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 p-5">
+                    <table border="1" cellpadding="1" cellspacing="1" class="table border-bottom" id="myTable">
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="100px" class="position-relative">
+                                            <img src="@item.image" width="75px" alt="" class="border rounded-3">
+                                            <span class="position-absolute top-0 text-white"
+                                                  style="background: rgb(153 153 153 / 90%); padding: 0.15em 0.65em; border-radius: 2em; font-size: 0.85714em; right : 10px">
+                                                @item.quantity
+                                            </span>
+                                        </td>
+                                        <td class="text-color">
+                                            @item.Name
+                                        </td>
+                                        <td>@(item.price.ToString("#,0"))đ</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <span class="">Chưa có sản phẩm nào!</span>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="mb-3 d-flex gap-2 border-top py-3 border-bottom ">
+                        <input type="password" class="form-control w-50 p-2" id="exampleInputPassword1" placeholder="Email">
+                        <button class="btn btn-danger">Sử dụng</button>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Tạm Tính</span>
+                        <span>70,230,000₫</span>
+                    </div>
+                    <div class="d-flex justify-content-between pb-2 border-bottom">
+                        <span>Phí vận chuyển</span>
+                        <span>—</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Tổng cộng</span>
+                        <span class="fs-4">
+                            <span class="fs-4">
+                                VND
+                                @if (Model != null && Model.Any())
+                                {
+                                    decimal total = Model.Sum(cartItem => cartItem.price * cartItem.quantity);
+                                    @total.ToString("#,0");
+                                }
+                                else
+                                {
+                                    <span>0</span>
+                                }đ
+                            </span>
+
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".btn-checkoutt", function (e) {
+                console.log(123);
+                e.preventDefault();
+                var email = $(".email-ship").val();
+                var address = $(".address-ship").val();
+                var fullname = $(".fullname-ship").val();
+                var mobile = $(".phone-ship").val();
+
+                $.ajax({
+                    url: "/ThanhToan/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        email: email,
+                        phoneNumber: mobile,
+                        fullName: fullname,
+                        Address: address
+                    },
+                    success: function (response) {
+                        if (response.isUsernull) {
+                            Swal.fire({
+                                title: 'Thanh toán!',
+                                text: 'Bạn cần đăng nhập để thanh toán!.',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'OK',
+                                cancelButtonText: 'Hủy bỏ'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '/dangnhap';
+                                }
+                            });
+                        }
+                        if (response.isSuccess) {
+                            Swal.fire({
+                                title: 'Chúc mừng bạn đã thanh toán thành công!',
+                                text: 'Cảm ơn bạn đã đặt hàng của chúng tôi!.',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).then(() => {
+                                window.location.href = '/';
+                            });
+                        } else {
+                            $(".error-checkout").text(response.error);
+                        }
+                    },
+                    error: function () {
+                        $(".error-login").text("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

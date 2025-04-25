@@ -1,0 +1,57 @@
+﻿@model List<WebSale.Models.Coupon>
+@{
+    ViewBag.Title = "Danh sách mã giảm giá";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4">
+    <a href="/Admin/MaGiamGia/themMaGiamGia" class="btn btn-success mb-3">
+        <i class="fas fa-plus"></i> Thêm mã giảm giá
+    </a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary text-white">
+            <h6 class="m-0 font-weight-bold">Danh sách mã giảm giá</h6>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tên mã</th>
+                            <th class="text-center">Mô tả</th>
+                            <th class="text-center">Ngày bắt đầu</th>
+                            <th class="text-center">Ngày kết thúc</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Kích hoạt</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Giá giảm</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.name</td>
+                                <td class="text-center">@item.description</td>
+                                <td class="text-center">@item.dateStart.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td class="text-center">@item.dateExpier.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td class="text-center">@item.quantity</td>
+                                <td class="text-center">@(item.active ? "Kích hoạt" : "Không kích hoạt")</td>
+                                <td class="text-center font-weight-bold @(item.dateExpier < DateTime.Now ? "text-danger" : "text-success")">
+                                    @(item.dateExpier < DateTime.Now ? "Hết hạn" : "Còn hạn")
+                                </td>
+                                <td class="text-center">@item.price.ToString("#,0 đ")</td>
+                                <td class="text-center">
+                                    <a href="/Admin/MaGiamGia/deleteMaGiam?id=@item.id" class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+

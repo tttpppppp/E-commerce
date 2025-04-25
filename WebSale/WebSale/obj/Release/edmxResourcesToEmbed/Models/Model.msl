@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebBanHangASPModelStoreContainer" CdmEntityContainer="WebBanHangASPEntities3">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="adminId" ColumnName="adminId" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Brand">
+        <MappingFragment StoreEntitySet="Brands">
+          <ScalarProperty Name="brandId" ColumnName="brandId" />
+          <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+          <ScalarProperty Name="imageBrand" ColumnName="imageBrand" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="slug" ColumnName="slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price_at_order" ColumnName="price_at_order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThongSoKyThuats">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.ThongSoKyThuat">
+        <MappingFragment StoreEntitySet="ThongSoKyThuat">
+          <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+          <ScalarProperty Name="screenTechnology" ColumnName="screenTechnology" />
+          <ScalarProperty Name="screenResolution" ColumnName="screenResolution" />
+          <ScalarProperty Name="screenSize" ColumnName="screenSize" />
+          <ScalarProperty Name="screenFeatures" ColumnName="screenFeatures" />
+          <ScalarProperty Name="refreshRate" ColumnName="refreshRate" />
+          <ScalarProperty Name="rearCamera" ColumnName="rearCamera" />
+          <ScalarProperty Name="rearCameraResolution" ColumnName="rearCameraResolution" />
+          <ScalarProperty Name="videoRecording" ColumnName="videoRecording" />
+          <ScalarProperty Name="flash" ColumnName="flash" />
+          <ScalarProperty Name="rearCameraFeatures" ColumnName="rearCameraFeatures" />
+          <ScalarProperty Name="frontCamera" ColumnName="frontCamera" />
+          <ScalarProperty Name="frontCameraResolution" ColumnName="frontCameraResolution" />
+          <ScalarProperty Name="operatingSystem" ColumnName="operatingSystem" />
+          <ScalarProperty Name="cpu" ColumnName="cpu" />
+          <ScalarProperty Name="ram" ColumnName="ram" />
+          <ScalarProperty Name="internalStorage" ColumnName="internalStorage" />
+          <ScalarProperty Name="mobileNetwork" ColumnName="mobileNetwork" />
+          <ScalarProperty Name="sim" ColumnName="sim" />
+          <ScalarProperty Name="wifi" ColumnName="wifi" />
+          <ScalarProperty Name="gps" ColumnName="gps" />
+          <ScalarProperty Name="bluetooth" ColumnName="bluetooth" />
+          <ScalarProperty Name="chargingPort" ColumnName="chargingPort" />
+          <ScalarProperty Name="headphoneJack" ColumnName="headphoneJack" />
+          <ScalarProperty Name="otherConnections" ColumnName="otherConnections" />
+          <ScalarProperty Name="batteryCapacity" ColumnName="batteryCapacity" />
+          <ScalarProperty Name="batteryTechnology" ColumnName="batteryTechnology" />
+          <ScalarProperty Name="advancedSecurity" ColumnName="advancedSecurity" />
+          <ScalarProperty Name="specialFeatures" ColumnName="specialFeatures" />
+          <ScalarProperty Name="waterResistance" ColumnName="waterResistance" />
+          <ScalarProperty Name="recording" ColumnName="recording" />
+          <ScalarProperty Name="radio" ColumnName="radio" />
+          <ScalarProperty Name="movieFormats" ColumnName="movieFormats" />
+          <ScalarProperty Name="musicFormats" ColumnName="musicFormats" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="typeId" ColumnName="typeId" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="slug" ColumnName="slug" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="imageCategory" ColumnName="imageCategory" />
+          <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="slug" ColumnName="slug" />
+          <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+          <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="typeId" ColumnName="typeId" />
+          <ScalarProperty Name="brandId" ColumnName="brandId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getListProduct" FunctionName="WebBanHangASPModel.Store.getListProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangASPModel.getListProduct_Result">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+          <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="chiTietSanPham" FunctionName="WebBanHangASPModel.Store.chiTietSanPham">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangASPModel.chiTietSanPham_Result">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+          <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+          <ScalarProperty Name="screenTechnology" ColumnName="screenTechnology" />
+          <ScalarProperty Name="screenResolution" ColumnName="screenResolution" />
+          <ScalarProperty Name="screenSize" ColumnName="screenSize" />
+          <ScalarProperty Name="screenFeatures" ColumnName="screenFeatures" />
+          <ScalarProperty Name="refreshRate" ColumnName="refreshRate" />
+          <ScalarProperty Name="rearCamera" ColumnName="rearCamera" />
+          <ScalarProperty Name="rearCameraResolution" ColumnName="rearCameraResolution" />
+          <ScalarProperty Name="videoRecording" ColumnName="videoRecording" />
+          <ScalarProperty Name="flash" ColumnName="flash" />
+          <ScalarProperty Name="rearCameraFeatures" ColumnName="rearCameraFeatures" />
+          <ScalarProperty Name="frontCamera" ColumnName="frontCamera" />
+          <ScalarProperty Name="frontCameraResolution" ColumnName="frontCameraResolution" />
+          <ScalarProperty Name="operatingSystem" ColumnName="operatingSystem" />
+          <ScalarProperty Name="cpu" ColumnName="cpu" />
+          <ScalarProperty Name="ram" ColumnName="ram" />
+          <ScalarProperty Name="internalStorage" ColumnName="internalStorage" />
+          <ScalarProperty Name="mobileNetwork" ColumnName="mobileNetwork" />
+          <ScalarProperty Name="sim" ColumnName="sim" />
+          <ScalarProperty Name="wifi" ColumnName="wifi" />
+          <ScalarProperty Name="gps" ColumnName="gps" />
+          <ScalarProperty Name="bluetooth" ColumnName="bluetooth" />
+          <ScalarProperty Name="chargingPort" ColumnName="chargingPort" />
+          <ScalarProperty Name="headphoneJack" ColumnName="headphoneJack" />
+          <ScalarProperty Name="otherConnections" ColumnName="otherConnections" />
+          <ScalarProperty Name="batteryCapacity" ColumnName="batteryCapacity" />
+          <ScalarProperty Name="batteryTechnology" ColumnName="batteryTechnology" />
+          <ScalarProperty Name="advancedSecurity" ColumnName="advancedSecurity" />
+          <ScalarProperty Name="specialFeatures" ColumnName="specialFeatures" />
+          <ScalarProperty Name="waterResistance" ColumnName="waterResistance" />
+          <ScalarProperty Name="recording" ColumnName="recording" />
+          <ScalarProperty Name="radio" ColumnName="radio" />
+          <ScalarProperty Name="movieFormats" ColumnName="movieFormats" />
+          <ScalarProperty Name="musicFormats" ColumnName="musicFormats" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Shippings">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.Shipping">
+        <MappingFragment StoreEntitySet="Shipping">
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImages">
+      <EntityTypeMapping TypeName="WebBanHangASPModel.ProductImage">
+        <MappingFragment StoreEntitySet="ProductImages">
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="imageId" ColumnName="imageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

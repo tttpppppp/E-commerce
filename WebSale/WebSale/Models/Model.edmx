@@ -1,0 +1,1679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebBanHangASPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="15" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tieu_de" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="dang_boi" Type="nvarchar" MaxLength="100" />
+          <Property Name="ngay_dang" Type="date" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="danh_muc_id" Type="int" />
+          <Property Name="slug" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="int" />
+          <Property Name="image_thumb" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="brandId" />
+          </Key>
+          <Property Name="brandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameBrand" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="imageBrand" Type="nvarchar" MaxLength="200" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="slug" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameCategory" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="imageCategory" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="slug" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="dateStart" Type="datetime" Nullable="false" />
+          <Property Name="dateExpier" Type="datetime" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhMucBlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="hinh_anh" Type="nvarchar" MaxLength="255" />
+          <Property Name="alert" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="int" />
+          <Property Name="slug" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MucLuc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tieu_de" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="blog_id" Type="int" />
+          <Property Name="content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="shippingID" Type="int" />
+          <Property Name="trangthai" Type="int" />
+          <Property Name="giaVanChuyen" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price_at_order" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="mausac" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="imageId" />
+          </Key>
+          <Property Name="imageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" />
+          <Property Name="imageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDefault" Type="bit" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="sale_price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="sale_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="sku" Type="nvarchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="brandId" Type="int" Nullable="false" />
+          <Property Name="typeId" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="status" Type="int" />
+          <Property Name="percen_sale" Type="int" />
+          <Property Name="specificationId" Type="int" />
+          <Property Name="slug" Type="nvarchar" MaxLength="100" />
+          <Property Name="categoryId" Type="int" />
+          <Property Name="isGift" Type="int" />
+          <Property Name="sold_quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" Nullable="false" />
+          <Property Name="star" Type="int" Nullable="false" />
+          <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="shippingID" />
+          </Key>
+          <Property Name="shippingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="city" Type="nvarchar" MaxLength="100" />
+          <Property Name="district" Type="nvarchar" MaxLength="50" />
+          <Property Name="ward" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhuongThuc" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ThongSoKyThuat">
+          <Key>
+            <PropertyRef Name="specificationId" />
+          </Key>
+          <Property Name="specificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="screenTechnology" Type="nvarchar" MaxLength="100" />
+          <Property Name="screenResolution" Type="nvarchar" MaxLength="50" />
+          <Property Name="screenSize" Type="nvarchar" MaxLength="20" />
+          <Property Name="screenFeatures" Type="nvarchar" MaxLength="500" />
+          <Property Name="refreshRate" Type="nvarchar" MaxLength="10" />
+          <Property Name="rearCamera" Type="nvarchar" MaxLength="100" />
+          <Property Name="rearCameraResolution" Type="nvarchar" MaxLength="50" />
+          <Property Name="videoRecording" Type="nvarchar" MaxLength="100" />
+          <Property Name="flash" Type="nvarchar" MaxLength="10" />
+          <Property Name="rearCameraFeatures" Type="nvarchar" MaxLength="500" />
+          <Property Name="frontCamera" Type="nvarchar" MaxLength="100" />
+          <Property Name="frontCameraResolution" Type="nvarchar" MaxLength="50" />
+          <Property Name="operatingSystem" Type="nvarchar" MaxLength="50" />
+          <Property Name="cpu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ram" Type="nvarchar" MaxLength="20" />
+          <Property Name="internalStorage" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobileNetwork" Type="nvarchar" MaxLength="20" />
+          <Property Name="sim" Type="nvarchar" MaxLength="50" />
+          <Property Name="wifi" Type="nvarchar" MaxLength="50" />
+          <Property Name="gps" Type="nvarchar" MaxLength="100" />
+          <Property Name="bluetooth" Type="nvarchar" MaxLength="20" />
+          <Property Name="chargingPort" Type="nvarchar" MaxLength="20" />
+          <Property Name="headphoneJack" Type="nvarchar" MaxLength="20" />
+          <Property Name="otherConnections" Type="nvarchar" MaxLength="100" />
+          <Property Name="batteryCapacity" Type="nvarchar" MaxLength="20" />
+          <Property Name="batteryTechnology" Type="nvarchar" MaxLength="50" />
+          <Property Name="advancedSecurity" Type="nvarchar" MaxLength="50" />
+          <Property Name="specialFeatures" Type="nvarchar" MaxLength="200" />
+          <Property Name="waterResistance" Type="nvarchar" MaxLength="50" />
+          <Property Name="recording" Type="nvarchar" MaxLength="100" />
+          <Property Name="radio" Type="nvarchar" MaxLength="10" />
+          <Property Name="movieFormats" Type="nvarchar" MaxLength="100" />
+          <Property Name="musicFormats" Type="nvarchar" MaxLength="100" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="District" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ward" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="typeId" />
+          </Key>
+          <Property Name="typeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="150" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="15" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="token" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Blog__danh_muc_i__7755B73D">
+          <End Role="DanhMucBlog" Type="Self.DanhMucBlog" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucBlog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="danh_muc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MucLuc__blog_id__7A3223E8">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MucLuc" Type="Self.MucLuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MucLuc">
+              <PropertyRef Name="blog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__571DF1D5">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__order__3C34F16F">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__produ__3D2915A8">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__brandI__339FAB6E">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="brandId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="brandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__specif__3587F3E0">
+          <End Role="ThongSoKyThuat" Type="Self.ThongSoKyThuat" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThongSoKyThuat">
+              <PropertyRef Name="specificationId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="specificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__typeId__3493CFA7">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="typeId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="typeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Shipping">
+          <End Role="Shipping" Type="Self.Shipping" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="shippingID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="shippingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImages_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Product">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="chiTietSanPham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="slug" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getListProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="WebBanHangASPModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucBlog" EntityType="Self.DanhMucBlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MucLuc" EntityType="Self.MucLuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongSoKyThuat" EntityType="Self.ThongSoKyThuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transport" EntityType="Self.Transport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Blog__danh_muc_i__7755B73D" Association="Self.FK__Blog__danh_muc_i__7755B73D">
+            <End Role="DanhMucBlog" EntitySet="DanhMucBlog" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MucLuc__blog_id__7A3223E8" Association="Self.FK__MucLuc__blog_id__7A3223E8">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="MucLuc" EntitySet="MucLuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__571DF1D5" Association="Self.FK__Order__userId__571DF1D5">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__order__3C34F16F" Association="Self.FK__OrderDeta__order__3C34F16F">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__produ__3D2915A8" Association="Self.FK__OrderDeta__produ__3D2915A8">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__brandI__339FAB6E" Association="Self.FK__Products__brandI__339FAB6E">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__specif__3587F3E0" Association="Self.FK__Products__specif__3587F3E0">
+            <End Role="ThongSoKyThuat" EntitySet="ThongSoKyThuat" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__typeId__3493CFA7" Association="Self.FK__Products__typeId__3493CFA7">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Shipping" Association="Self.FK_Order_Shipping">
+            <End Role="Shipping" EntitySet="Shipping" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_Products" Association="Self.FK_ProductImages_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Products" Association="Self.FK_Reviews_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Product" Association="Self.FK_Wishlist_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_User" Association="Self.FK_Wishlist_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebBanHangASPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="brandId" />
+          </Key>
+          <Property Name="brandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameBrand" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imageBrand" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="slug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="WebBanHangASPModel.FK__Products__brandI__339FAB6E" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Order__userId__571DF1D5" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__order__3C34F16F" FromRole="Order" ToRole="OrderDetails" />
+          <Property Name="shippingID" Type="Int32" />
+          <NavigationProperty Name="Shipping" Relationship="WebBanHangASPModel.FK_Order_Shipping" FromRole="Order" ToRole="Shipping" />
+          <Property Name="trangthai" Type="Int32" />
+          <Property Name="giaVanChuyen" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price_at_order" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__order__3C34F16F" FromRole="OrderDetails" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="WebBanHangASPModel.FK__OrderDeta__produ__3D2915A8" FromRole="OrderDetail" ToRole="Product" />
+          <Property Name="mausac" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ThongSoKyThuat">
+          <Key>
+            <PropertyRef Name="specificationId" />
+          </Key>
+          <Property Name="specificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="screenTechnology" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="screenResolution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="screenSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="screenFeatures" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="refreshRate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="rearCamera" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rearCameraResolution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="videoRecording" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flash" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="rearCameraFeatures" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="frontCamera" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="frontCameraResolution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="operatingSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cpu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ram" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="internalStorage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobileNetwork" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="wifi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gps" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="bluetooth" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="chargingPort" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="headphoneJack" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="otherConnections" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="batteryCapacity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="batteryTechnology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="advancedSecurity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specialFeatures" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="waterResistance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="recording" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="radio" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="movieFormats" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="musicFormats" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="WebBanHangASPModel.FK__Products__specif__3587F3E0" FromRole="ThongSoKyThuat" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="typeId" />
+          </Key>
+          <Property Name="typeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="WebBanHangASPModel.FK__Products__typeId__3493CFA7" FromRole="Type" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__userId__571DF1D5" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Wishlists" Relationship="WebBanHangASPModel.FK_Wishlist_User" FromRole="User" ToRole="Wishlist" />
+          <Property Name="token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reviews" Relationship="WebBanHangASPModel.FK_Reviews_Users" FromRole="User" ToRole="Review" />
+        </EntityType>
+        <Association Name="FK__Order__userId__571DF1D5">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__order__3C34F16F">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebBanHangASPEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="ThongSoKyThuats" EntityType="Self.ThongSoKyThuat" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Order__userId__571DF1D5" Association="Self.FK__Order__userId__571DF1D5">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__order__3C34F16F" Association="Self.FK__OrderDeta__order__3C34F16F">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="WebBanHangASPModel.Category" />
+          <EntitySet Name="Products" EntityType="WebBanHangASPModel.Product" />
+          <AssociationSet Name="FK__Products__brandI__339FAB6E" Association="WebBanHangASPModel.FK__Products__brandI__339FAB6E">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Categories" Association="WebBanHangASPModel.FK_Products_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__produ__3D2915A8" Association="WebBanHangASPModel.FK__OrderDeta__produ__3D2915A8">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__specif__3587F3E0" Association="WebBanHangASPModel.FK__Products__specif__3587F3E0">
+            <End Role="ThongSoKyThuat" EntitySet="ThongSoKyThuats" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__typeId__3493CFA7" Association="WebBanHangASPModel.FK__Products__typeId__3493CFA7">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <FunctionImport Name="getListProduct" ReturnType="Collection(WebBanHangASPModel.getListProduct_Result)" />
+          <FunctionImport Name="getProductBySlug" ReturnType="Collection(WebBanHangASPModel.getProductBySlug_Result)">
+          <Parameter Name="slug" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetProductDetailsBySlug" ReturnType="Collection(WebBanHangASPModel.GetProductDetailsBySlug_Result)">
+            <Parameter Name="slug" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="chiTietSanPham" ReturnType="Collection(WebBanHangASPModel.chiTietSanPham_Result)">
+          <Parameter Name="slug" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Shippings" EntityType="WebBanHangASPModel.Shipping" />
+          <AssociationSet Name="FK_Order_Shipping" Association="WebBanHangASPModel.FK_Order_Shipping">
+            <End Role="Shipping" EntitySet="Shippings" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="ProductImages" EntityType="WebBanHangASPModel.ProductImage" />
+          <AssociationSet Name="FK_ProductImages_Products" Association="WebBanHangASPModel.FK_ProductImages_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <EntitySet Name="Transports" EntityType="WebBanHangASPModel.Transport" />
+          <EntitySet Name="Coupons" EntityType="WebBanHangASPModel.Coupon" />
+          <EntitySet Name="Wishlists" EntityType="WebBanHangASPModel.Wishlist" />
+          <AssociationSet Name="FK_Wishlist_Product" Association="WebBanHangASPModel.FK_Wishlist_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_User" Association="WebBanHangASPModel.FK_Wishlist_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
+          </AssociationSet>
+          <EntitySet Name="Blogs" EntityType="WebBanHangASPModel.Blog" />
+          <EntitySet Name="DanhMucBlogs" EntityType="WebBanHangASPModel.DanhMucBlog" />
+          <EntitySet Name="MucLucs" EntityType="WebBanHangASPModel.MucLuc" />
+          <AssociationSet Name="FK__Blog__danh_muc_i__7755B73D" Association="WebBanHangASPModel.FK__Blog__danh_muc_i__7755B73D">
+            <End Role="DanhMucBlog" EntitySet="DanhMucBlogs" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MucLuc__blog_id__7A3223E8" Association="WebBanHangASPModel.FK__MucLuc__blog_id__7A3223E8">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="MucLuc" EntitySet="MucLucs" />
+          </AssociationSet>
+          <EntitySet Name="Reviews" EntityType="WebBanHangASPModel.Review" />
+          <AssociationSet Name="FK_Reviews_Products" Association="WebBanHangASPModel.FK_Reviews_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="WebBanHangASPModel.FK_Reviews_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameCategory" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="imageCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="slug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="WebBanHangASPModel.FK_Products_Categories" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="sale_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="brandId" Type="Int32" Nullable="false" />
+          <Property Name="typeId" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="percen_sale" Type="Int32" />
+          <Property Name="specificationId" Type="Int32" />
+          <Property Name="slug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="categoryId" Type="Int32" />
+          <NavigationProperty Name="Brand" Relationship="WebBanHangASPModel.FK__Products__brandI__339FAB6E" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="WebBanHangASPModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="WebBanHangASPModel.FK__OrderDeta__produ__3D2915A8" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ThongSoKyThuat" Relationship="WebBanHangASPModel.FK__Products__specif__3587F3E0" FromRole="Product" ToRole="ThongSoKyThuat" />
+          <NavigationProperty Name="Type" Relationship="WebBanHangASPModel.FK__Products__typeId__3493CFA7" FromRole="Product" ToRole="Type" />
+          <NavigationProperty Name="ProductImages" Relationship="WebBanHangASPModel.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImage" />
+          <Property Name="isGift" Type="Int32" />
+          <Property Name="sold_quantity" Type="Int32" />
+          <NavigationProperty Name="Wishlists" Relationship="WebBanHangASPModel.FK_Wishlist_Product" FromRole="Product" ToRole="Wishlist" />
+          <NavigationProperty Name="Reviews" Relationship="WebBanHangASPModel.FK_Reviews_Products" FromRole="Product" ToRole="Review" />
+        </EntityType>
+        <Association Name="FK__Products__brandI__339FAB6E">
+          <End Type="WebBanHangASPModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="brandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Categories">
+          <End Type="WebBanHangASPModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__produ__3D2915A8">
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__specif__3587F3E0">
+          <End Type="WebBanHangASPModel.ThongSoKyThuat" Role="ThongSoKyThuat" Multiplicity="0..1" />
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThongSoKyThuat">
+              <PropertyRef Name="specificationId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="specificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__typeId__3493CFA7">
+          <End Type="WebBanHangASPModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="typeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="typeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getListProduct_Result">
+          <Property Type="Int32" Name="productId" Nullable="false" />
+          <Property Type="String" Name="nameProduct" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="sale_price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="quantity" Nullable="false" />
+          <Property Type="String" Name="sku" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nameBrand" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nameCategory" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="typeName" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="percen_sale" Nullable="true" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="specificationId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getProductBySlug_Result">
+          <Property Type="Int32" Name="productId" Nullable="false" />
+          <Property Type="String" Name="nameProduct" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="sale_price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="percen_sale" Nullable="true" />
+          <Property Type="String" Name="sku" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="quantity" Nullable="false" />
+          <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="updated_at" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="Int32" Name="percen_sale1" Nullable="true" />
+          <Property Type="String" Name="slug" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nameCategory" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="nameBrand" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="typeName" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="specificationId" Nullable="false" />
+          <Property Type="String" Name="screenTechnology" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="screenResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="screenSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="screenFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="refreshRate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="rearCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="videoRecording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="flash" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCameraFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="frontCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="frontCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="operatingSystem" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cpu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ram" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="internalStorage" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobileNetwork" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="sim" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="wifi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="gps" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bluetooth" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="chargingPort" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="headphoneJack" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="otherConnections" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="batteryCapacity" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="batteryTechnology" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="advancedSecurity" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="specialFeatures" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="waterResistance" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="recording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="radio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="movieFormats" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="musicFormats" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="status1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetProductDetailsBySlug_Result">
+          <Property Type="Int32" Name="productId" Nullable="false" />
+          <Property Type="String" Name="nameProduct" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="sale_price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="percen_sale" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="false" />
+          <Property Type="String" Name="sku" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="quantity1" Nullable="false" />
+          <Property Type="String" Name="nameBrand" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nameCategory" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="typeName" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="specificationId" Nullable="false" />
+          <Property Type="String" Name="screenTechnology" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="screenResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="screenSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="screenFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="refreshRate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="rearCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="videoRecording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="flash" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCameraFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="frontCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="frontCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="operatingSystem" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cpu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ram" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="internalStorage" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobileNetwork" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="sim" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="wifi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="gps" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bluetooth" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="chargingPort" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="headphoneJack" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="otherConnections" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="batteryCapacity" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="batteryTechnology" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="advancedSecurity" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="specialFeatures" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="waterResistance" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="recording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="radio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="movieFormats" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="musicFormats" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="chiTietSanPham_Result">
+          <Property Type="Int32" Name="productId" Nullable="false" />
+          <Property Type="String" Name="nameProduct" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="sale_price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="quantity" Nullable="false" />
+          <Property Type="Int32" Name="percen_sale" Nullable="true" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="nameBrand" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nameCategory" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="typeName" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="specificationId" Nullable="false" />
+          <Property Type="String" Name="screenTechnology" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="screenResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="screenSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="screenFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="refreshRate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="rearCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="videoRecording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="flash" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="rearCameraFeatures" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="frontCamera" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="frontCameraResolution" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="operatingSystem" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cpu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ram" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="internalStorage" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mobileNetwork" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="sim" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="wifi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="gps" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bluetooth" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="chargingPort" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="headphoneJack" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="otherConnections" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="batteryCapacity" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="batteryTechnology" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="advancedSecurity" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="specialFeatures" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="waterResistance" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="recording" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="radio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="movieFormats" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="musicFormats" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="shippingID" />
+          </Key>
+          <Property Name="shippingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fullName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Orders" Relationship="WebBanHangASPModel.FK_Order_Shipping" FromRole="Shipping" ToRole="Order" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ward" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhuongThuc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Order_Shipping">
+          <End Type="WebBanHangASPModel.Shipping" Role="Shipping" Multiplicity="0..1" />
+          <End Type="WebBanHangASPModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="shippingID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="shippingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="imageId" />
+          </Key>
+          <Property Name="imageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int32" />
+          <Property Name="imageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="WebBanHangASPModel.FK_ProductImages_Products" FromRole="ProductImage" ToRole="Product" />
+          <Property Name="MauSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Boolean" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sale_price" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_ProductImages_Products">
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="WebBanHangASPModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Transport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ward" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateExpier" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="WebBanHangASPModel.FK_Wishlist_Product" FromRole="Wishlist" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="WebBanHangASPModel.FK_Wishlist_User" FromRole="Wishlist" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Wishlist_Product">
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_User">
+          <End Type="WebBanHangASPModel.User" Role="User" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Wishlist" Role="Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dang_boi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_dang" Type="DateTime" Precision="0" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="danh_muc_id" Type="Int32" />
+          <NavigationProperty Name="DanhMucBlog" Relationship="WebBanHangASPModel.FK__Blog__danh_muc_i__7755B73D" FromRole="Blog" ToRole="DanhMucBlog" />
+          <NavigationProperty Name="MucLucs" Relationship="WebBanHangASPModel.FK__MucLuc__blog_id__7A3223E8" FromRole="Blog" ToRole="MucLuc" />
+          <Property Name="slug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="image_thumb" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DanhMucBlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="hinh_anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blogs" Relationship="WebBanHangASPModel.FK__Blog__danh_muc_i__7755B73D" FromRole="DanhMucBlog" ToRole="Blog" />
+          <Property Name="alert" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="slug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MucLuc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="blog_id" Type="Int32" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blog" Relationship="WebBanHangASPModel.FK__MucLuc__blog_id__7A3223E8" FromRole="MucLuc" ToRole="Blog" />
+        </EntityType>
+        <Association Name="FK__Blog__danh_muc_i__7755B73D">
+          <End Type="WebBanHangASPModel.DanhMucBlog" Role="DanhMucBlog" Multiplicity="0..1" />
+          <End Type="WebBanHangASPModel.Blog" Role="Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucBlog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="danh_muc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MucLuc__blog_id__7A3223E8">
+          <End Type="WebBanHangASPModel.Blog" Role="Blog" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WebBanHangASPModel.MucLuc" Role="MucLuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MucLuc">
+              <PropertyRef Name="blog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="star" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="WebBanHangASPModel.FK_Reviews_Products" FromRole="Review" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="WebBanHangASPModel.FK_Reviews_Users" FromRole="Review" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Reviews_Products">
+          <End Type="WebBanHangASPModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Type="WebBanHangASPModel.User" Role="User" Multiplicity="1" />
+          <End Type="WebBanHangASPModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebBanHangASPModelStoreContainer" CdmEntityContainer="WebBanHangASPEntities3">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Brand">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+                <ScalarProperty Name="imageBrand" ColumnName="imageBrand" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="giaVanChuyen" ColumnName="giaVanChuyen" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="mausac" ColumnName="mausac" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price_at_order" ColumnName="price_at_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongSoKyThuats">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.ThongSoKyThuat">
+              <MappingFragment StoreEntitySet="ThongSoKyThuat">
+                <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+                <ScalarProperty Name="screenTechnology" ColumnName="screenTechnology" />
+                <ScalarProperty Name="screenResolution" ColumnName="screenResolution" />
+                <ScalarProperty Name="screenSize" ColumnName="screenSize" />
+                <ScalarProperty Name="screenFeatures" ColumnName="screenFeatures" />
+                <ScalarProperty Name="refreshRate" ColumnName="refreshRate" />
+                <ScalarProperty Name="rearCamera" ColumnName="rearCamera" />
+                <ScalarProperty Name="rearCameraResolution" ColumnName="rearCameraResolution" />
+                <ScalarProperty Name="videoRecording" ColumnName="videoRecording" />
+                <ScalarProperty Name="flash" ColumnName="flash" />
+                <ScalarProperty Name="rearCameraFeatures" ColumnName="rearCameraFeatures" />
+                <ScalarProperty Name="frontCamera" ColumnName="frontCamera" />
+                <ScalarProperty Name="frontCameraResolution" ColumnName="frontCameraResolution" />
+                <ScalarProperty Name="operatingSystem" ColumnName="operatingSystem" />
+                <ScalarProperty Name="cpu" ColumnName="cpu" />
+                <ScalarProperty Name="ram" ColumnName="ram" />
+                <ScalarProperty Name="internalStorage" ColumnName="internalStorage" />
+                <ScalarProperty Name="mobileNetwork" ColumnName="mobileNetwork" />
+                <ScalarProperty Name="sim" ColumnName="sim" />
+                <ScalarProperty Name="wifi" ColumnName="wifi" />
+                <ScalarProperty Name="gps" ColumnName="gps" />
+                <ScalarProperty Name="bluetooth" ColumnName="bluetooth" />
+                <ScalarProperty Name="chargingPort" ColumnName="chargingPort" />
+                <ScalarProperty Name="headphoneJack" ColumnName="headphoneJack" />
+                <ScalarProperty Name="otherConnections" ColumnName="otherConnections" />
+                <ScalarProperty Name="batteryCapacity" ColumnName="batteryCapacity" />
+                <ScalarProperty Name="batteryTechnology" ColumnName="batteryTechnology" />
+                <ScalarProperty Name="advancedSecurity" ColumnName="advancedSecurity" />
+                <ScalarProperty Name="specialFeatures" ColumnName="specialFeatures" />
+                <ScalarProperty Name="waterResistance" ColumnName="waterResistance" />
+                <ScalarProperty Name="recording" ColumnName="recording" />
+                <ScalarProperty Name="radio" ColumnName="radio" />
+                <ScalarProperty Name="movieFormats" ColumnName="movieFormats" />
+                <ScalarProperty Name="musicFormats" ColumnName="musicFormats" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="typeId" ColumnName="typeId" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="imageCategory" ColumnName="imageCategory" />
+                <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="sold_quantity" ColumnName="sold_quantity" />
+                <ScalarProperty Name="isGift" ColumnName="isGift" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+                <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="typeId" ColumnName="typeId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getListProduct" FunctionName="WebBanHangASPModel.Store.getListProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangASPModel.getListProduct_Result">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+                <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="chiTietSanPham" FunctionName="WebBanHangASPModel.Store.chiTietSanPham">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangASPModel.chiTietSanPham_Result">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="percen_sale" ColumnName="percen_sale" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="nameBrand" ColumnName="nameBrand" />
+                <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+                <ScalarProperty Name="specificationId" ColumnName="specificationId" />
+                <ScalarProperty Name="screenTechnology" ColumnName="screenTechnology" />
+                <ScalarProperty Name="screenResolution" ColumnName="screenResolution" />
+                <ScalarProperty Name="screenSize" ColumnName="screenSize" />
+                <ScalarProperty Name="screenFeatures" ColumnName="screenFeatures" />
+                <ScalarProperty Name="refreshRate" ColumnName="refreshRate" />
+                <ScalarProperty Name="rearCamera" ColumnName="rearCamera" />
+                <ScalarProperty Name="rearCameraResolution" ColumnName="rearCameraResolution" />
+                <ScalarProperty Name="videoRecording" ColumnName="videoRecording" />
+                <ScalarProperty Name="flash" ColumnName="flash" />
+                <ScalarProperty Name="rearCameraFeatures" ColumnName="rearCameraFeatures" />
+                <ScalarProperty Name="frontCamera" ColumnName="frontCamera" />
+                <ScalarProperty Name="frontCameraResolution" ColumnName="frontCameraResolution" />
+                <ScalarProperty Name="operatingSystem" ColumnName="operatingSystem" />
+                <ScalarProperty Name="cpu" ColumnName="cpu" />
+                <ScalarProperty Name="ram" ColumnName="ram" />
+                <ScalarProperty Name="internalStorage" ColumnName="internalStorage" />
+                <ScalarProperty Name="mobileNetwork" ColumnName="mobileNetwork" />
+                <ScalarProperty Name="sim" ColumnName="sim" />
+                <ScalarProperty Name="wifi" ColumnName="wifi" />
+                <ScalarProperty Name="gps" ColumnName="gps" />
+                <ScalarProperty Name="bluetooth" ColumnName="bluetooth" />
+                <ScalarProperty Name="chargingPort" ColumnName="chargingPort" />
+                <ScalarProperty Name="headphoneJack" ColumnName="headphoneJack" />
+                <ScalarProperty Name="otherConnections" ColumnName="otherConnections" />
+                <ScalarProperty Name="batteryCapacity" ColumnName="batteryCapacity" />
+                <ScalarProperty Name="batteryTechnology" ColumnName="batteryTechnology" />
+                <ScalarProperty Name="advancedSecurity" ColumnName="advancedSecurity" />
+                <ScalarProperty Name="specialFeatures" ColumnName="specialFeatures" />
+                <ScalarProperty Name="waterResistance" ColumnName="waterResistance" />
+                <ScalarProperty Name="recording" ColumnName="recording" />
+                <ScalarProperty Name="radio" ColumnName="radio" />
+                <ScalarProperty Name="movieFormats" ColumnName="movieFormats" />
+                <ScalarProperty Name="musicFormats" ColumnName="musicFormats" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Shippings">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Shipping">
+              <MappingFragment StoreEntitySet="Shipping">
+                <ScalarProperty Name="PhuongThuc" ColumnName="PhuongThuc" />
+                <ScalarProperty Name="ward" ColumnName="ward" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="shippingID" ColumnName="shippingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="MauSac" ColumnName="MauSac" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="imageId" ColumnName="imageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transports">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Transport">
+              <MappingFragment StoreEntitySet="Transport">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupons">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="dateExpier" ColumnName="dateExpier" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wishlists">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Wishlist">
+              <MappingFragment StoreEntitySet="Wishlist">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="image_thumb" ColumnName="image_thumb" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="danh_muc_id" ColumnName="danh_muc_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="ngay_dang" ColumnName="ngay_dang" />
+                <ScalarProperty Name="dang_boi" ColumnName="dang_boi" />
+                <ScalarProperty Name="tieu_de" ColumnName="tieu_de" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucBlogs">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.DanhMucBlog">
+              <MappingFragment StoreEntitySet="DanhMucBlog">
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="alert" ColumnName="alert" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MucLucs">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.MucLuc">
+              <MappingFragment StoreEntitySet="MucLuc">
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="blog_id" ColumnName="blog_id" />
+                <ScalarProperty Name="tieu_de" ColumnName="tieu_de" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="WebBanHangASPModel.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="star" ColumnName="star" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

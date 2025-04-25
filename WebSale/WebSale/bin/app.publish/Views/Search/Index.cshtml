@@ -1,0 +1,50 @@
+﻿@model List<WebSale.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4 bg-white container my-4 rounded-3">
+    <p class="text-color">Có @Model.Count kết quả tìm kiếm với từ khóa "@ViewBag.keyword"</p>
+    <div class="row">
+        @if (Model.Count > 0)
+        {
+            <div class="flash-list d-flex align-items-center flex-wrap">
+                @foreach (var item in Model)
+                {
+                    <div class="flash-item">
+                        <a href="/products/@item.slug">
+                            ">
+                            <img loading="lazy"
+                                 src="@item.image"
+                                 alt class="img-fluid">
+                        </a>
+                        <div class="flash-text">
+                            <p class="m-0 text-truncate" style="max-width: 200px; overflow: hidden;" title="@item.nameProduct">
+                                @item.nameProduct
+                            </p>
+
+                            <div class="price">
+                                <span class="text-danger">@(item.price.ToString("#,0"))đ</span>
+                                <span class="price-sale">
+                                    @(item.price.ToString("#,0"))đ
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <label for>Yêu thích</label>
+                            </div>
+                        </div>
+                        <span class="label-sale position-absolute">
+                            Giảm @item.percen_sale%
+                        </span>
+                        <div class="cart cart-static" data-product-id="@item.productId">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+

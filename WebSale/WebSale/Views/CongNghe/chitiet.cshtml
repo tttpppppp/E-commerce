@@ -1,0 +1,88 @@
+﻿@model WebSale.Models.Blog
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var blogCounts = ViewBag.blogCounts as List<WebSale.Models.CategoryBlogCount>;
+}
+
+<div class="container my-3">
+    <div class="row bg-white rounded-3">
+        <div class="sidebar col-lg-4 mb-4">
+            <h2>
+                <img src="https://theme.hstatic.net/200000823693/1001172883/14/hot_ico.png?v=1102" />
+                <span class="fw-bold text-color mx-2">Chủ đề Hot</span>
+            </h2>
+            <ul>
+                @if (ViewBag.listCategory.Count > 0)
+                {
+                    foreach (var item in ViewBag.listCategory)
+                    {
+                        var blogCount = blogCounts?.FirstOrDefault(b => b.slug == item.slug)?.BlogCount ?? 0;
+                        <a href="/blogs/@item.slug" class="text-decoration-none text-color">
+                        <li>
+                            <img alt="Icon for Tin mới" src="@item.hinh_anh" />
+                            <span>
+                                <span class="text-color fw-bold"> @item.ten</span>
+                                <br />
+                                <span>@blogCount bài viết</span>
+
+                            </span>
+                        </li>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <p class="text-center fw-bold">Nội dung đang cập nhật!</p>
+                }
+            </ul>
+        </div>
+        <div class="content col-lg-8">
+            <h5 class="fw-bold text-color">
+                @Model.tieu_de
+            </h5>
+            <div class="meta">
+                Đăng bởi: @Model.dang_boi - @(Model.ngay_dang?.ToString("MM/yyyy"))
+            </div>
+            <div class="toc">
+                <h3>
+                    Mục lục
+                </h3>
+                <ol>
+                    @if (Model.MucLucs.Count > 0)
+                    {
+                        foreach (var item in Model.MucLucs)
+                        {
+                            <li>
+                                <a href="@("#content" + item.id)" style="font-size:14px;" class="text-color"> @item.tieu_de</a>
+                            </li>
+                        }
+
+                    }
+                    else
+                    {
+                        <p class="">Nội dung đang cập nhật!</p>
+                    }
+                </ol>
+                @*<div class="more">
+                    Xem thêm
+                </div>*@
+            </div>
+            <div class="content-blog">
+                @if (Model.MucLucs.Count > 0)
+                {
+                    foreach (var item in Model.MucLucs)
+                    {
+                        <div id="@("content" + item.id)">
+                            @Html.Raw(@item.content);
+                        </div>
+                    }
+                    }
+                    else
+                    {
+                        <p class="text-center fw-bold">Nội dung đang cập nhật!</p>
+                    }
+            </div>
+        </div>
+</div>
+ </div>
+

@@ -1,0 +1,52 @@
+﻿@model List<WebSale.Models.Category>
+@{
+    ViewBag.Title = "Danh sách danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-2">
+    <a href="/Admin/Categories/addCategories" class="btn btn-success mb-3">Thêm danh mục</a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách danh mục</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên nhãn hàng</th>
+                            <th>Slug</th>
+                            <th>Hình ảnh</th>
+                            <th>Trạng thái</th>
+                            <th>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.nameCategory</td>
+                                    <td>@item.slug</td>
+                                    <td><img src="@item.imageCategory" width="100px" /></td>
+                                    <td><span style="font-size: 14px" class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">@(item.status == 1 ? "Active" : "UnActive")</span></td>
+                                    <td>
+                                        <a href="/Admin/Categories/deleteCategory?id=@item.categoryId" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" class="btn btn-danger btn-sm">Xóa</a>
+                                        <a href="/Admin/Categories/updateCategory?id=@item.categoryId" class="btn btn-warning btn-sm">Sửa</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">Dữ liệu đang cập nhật!</div>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

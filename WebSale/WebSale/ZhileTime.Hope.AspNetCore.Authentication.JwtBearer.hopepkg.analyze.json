@@ -1,0 +1,63 @@
+{
+  "name": "ZhileTime.Hope.AspNetCore.Authentication.JwtBearer",
+  "hash": "",
+  "contents": [
+    {
+      "namespace": "ZhileTime.Hope.AspNetCore.Authentication.JwtBearer",
+      "dependsOnModules": [
+        {
+          "declaringAssemblyName": "ZhileTime.Hope.Security",
+          "namespace": "ZhileTime.Hope.Security",
+          "name": "HopeSecurityModule"
+        }
+      ],
+      "implementingInterfaces": [
+        {
+          "name": "IHopeModule",
+          "namespace": "ZhileTime.Hope.Modularity",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.Modularity.IHopeModule"
+        },
+        {
+          "name": "IOnPreApplicationInitialization",
+          "namespace": "ZhileTime.Hope.Modularity",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.Modularity.IOnPreApplicationInitialization"
+        },
+        {
+          "name": "IOnApplicationInitialization",
+          "namespace": "ZhileTime.Hope",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.IOnApplicationInitialization"
+        },
+        {
+          "name": "IOnPostApplicationInitialization",
+          "namespace": "ZhileTime.Hope.Modularity",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.Modularity.IOnPostApplicationInitialization"
+        },
+        {
+          "name": "IOnApplicationShutdown",
+          "namespace": "ZhileTime.Hope",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.IOnApplicationShutdown"
+        },
+        {
+          "name": "IPreConfigureServices",
+          "namespace": "ZhileTime.Hope.Modularity",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.Modularity.IPreConfigureServices"
+        },
+        {
+          "name": "IPostConfigureServices",
+          "namespace": "ZhileTime.Hope.Modularity",
+          "declaringAssemblyName": "ZhileTime.Hope.Core",
+          "fullName": "ZhileTime.Hope.Modularity.IPostConfigureServices"
+        }
+      ],
+      "contentType": "hopeModule",
+      "name": "HopeAspNetCoreAuthenticationJwtBearerModule",
+      "summary": null
+    }
+  ]
+}

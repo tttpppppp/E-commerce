@@ -1,0 +1,57 @@
+﻿@model List<WebSale.Models.MucLuc>
+@{
+    ViewBag.Title = "Danh sách danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4">
+    <a href="/Admin/MucLuc/addMucLuc" class="btn btn-success mb-3">
+        <i class="fas fa-plus"></i> Thêm mục lục
+    </a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary text-white">
+            <h6 class="m-0 font-weight-bold">Danh sách mục lục</h6>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Têu đề</th>
+                            <th class="text-center">Blog</th>
+                            <th class="text-center">Content</th>
+                            @*<th class="text-center">Trạng thái</th>*@
+                            <th class="text-center">Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.tieu_de</td>
+                                <td class="text-center">@item.blog_id</td>
+                                <td class="text-center">@item.content</td>
+                                @*<td class="text-center">
+                                        <span style="font-size: 14px" class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">
+                                            @(item.status == 1 ? "Active" : "UnActive")
+                                        </span>
+                                    </td>*@
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-danger btn-sm btn-delete-mucluc" data-productid="@item.id">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </button>
+                                    <a href="/Admin/Brand/updatedmucluc?id=@item.id" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

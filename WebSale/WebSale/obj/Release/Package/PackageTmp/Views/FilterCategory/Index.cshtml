@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebSale.Models.Product>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="flash-item">
+                <a href="/products/@item.slug">
+                    <img loading="lazy" src="@item.image" alt class="img-fluid">
+                </a>
+                <div class="flash-text">
+                    <p class="m-0 text-truncate" style="max-width: 200px;" title="@item.nameProduct">
+                        @item.nameProduct
+                    </p>
+                    <div class="price">
+                        <span class="text-danger">@(item.price.ToString("#,0"))đ</span>
+                        <span class="price-sale">@((item.price).ToString("#,0"))đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning text-center">Đang cập nhật</div>
+}

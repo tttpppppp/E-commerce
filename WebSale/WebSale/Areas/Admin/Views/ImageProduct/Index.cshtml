@@ -1,0 +1,66 @@
+﻿@model WebSale.Models.ProductImage
+
+@{
+    ViewBag.Title = "Quản lý hình ảnh";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@using (Html.BeginForm("Index" , "ImageProduct" , FormMethod.Post , new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal p-2">
+    <h4>Quản lý hình ảnh sản phẩm</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Sản phẩm</label>
+            <select name="productId" class="form-control">
+                @if (ViewBag.Products != null)
+                {
+                    foreach (var item in ViewBag.Products)
+                    {
+                        <option value="@item.productId">@item.nameProduct</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Màu sắc", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MauSac, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MauSac, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Hình ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="file" />
+            @Html.ValidationMessageFor(model => model.imageUrl, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label>Mặc định</label>
+            <select name="isDefault" class="form-control">
+                <option value="0">Không mặc định</option>
+                <option value="1">Mặc định</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm hình ảnh" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}

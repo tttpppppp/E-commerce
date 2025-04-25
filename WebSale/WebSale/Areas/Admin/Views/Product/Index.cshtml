@@ -1,0 +1,73 @@
+﻿@model List<WebSale.Models.getListProduct_Result>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="p-4">
+    <h2>Danh sách sản phẩm</h2>
+    <a href="/Admin/Product/addProduct" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Thêm sản phẩm</a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary text-white">
+            <h6 class="m-0 font-weight-bold">Danh sách Sản phẩm</h6>
+        </div>
+        <div class="card-body py-0">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="productData" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Tên sản phẩm</th>
+                            <th class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Hình ảnh</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Giá</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Giá giảm</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Phần trăm giảm</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Số lượng</th>
+                            @*<th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Đã bán</th>*@
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Mã SKU</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Nhãn hàng</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Danh mục</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Loại</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Trạng thái</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Thông số kỹ thuật</th>
+                            <th  class="font-weight-bold text-nowrap text-truncate" style="width: 10%";>Quản lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.nameProduct</td>
+                                <td><img src="@item.image" width="100px" /></td>
+                                <td>@item.price.ToString("#,0")đ</td>
+                                <td>@(item.sale_price?.ToString("#,0") ?? "0")đ</td>
+                                <td>@(item.percen_sale != null ? item.percen_sale : 0)%</td>
+                                <td>@item.quantity</td>
+                                <td>@item.sku</td>
+                                <td>@item.nameBrand</td>
+                                <td>@item.nameCategory</td>
+                                <td>@item.typeName</td>
+                                <td>
+                                    <span class="text-white p-1 rounded @(item.status == 1 ? "bg-success" : "bg-danger")">
+                                        @(item.status == 1 ? "Active" : "UnActive")
+                                    </span>
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" href="/Admin/ThongSoKyThuat/Index?id=@item.specificationId">Xem</a>
+                                </td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <a href="/Admin/Product/deleteProduct?id=@item.productId" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');" class="btn btn-danger btn-sm d-flex align-items-center mx-2">
+                                        <i class="fas fa-trash me-2"></i> Xóa
+                                    </a>
+                                    <a href="/Admin/Product/updateProduct?id=@item.productId" class="btn btn-warning btn-sm d-flex align-items-center">
+                                        <i class="fas fa-edit me-2"></i> Sửa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
